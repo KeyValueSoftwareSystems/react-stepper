@@ -1,11 +1,11 @@
 /*!
  * 
- *   @hodgef/ts-library-boilerplate-basic v1.1.178
- *   https://github.com/hodgef/ts-library-boilerplate-basic
+ *   @react/vertical-stepper v1
+ *   https://github.com/aarathyKeyvalue/vertical-stepper
  *
- *   Copyright (c) Francisco Hodge (https://github.com/hodgef) and project contributors.
+ *   Copyright (c) Keyvalue and project contributors.
  *
- *   This source code is licensed under the MIT license found in the
+ *   This source code is licensed under the  license found in the
  *   LICENSE file in the root directory of this source tree.
  *
  */

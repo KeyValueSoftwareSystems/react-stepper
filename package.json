@@ -25,6 +25,9 @@
     "starter",
     "es6"
   ],
+  "peerDependencies": {
+    "react": "^17.0.2"
+  },
   "devDependencies": {
     "@babel/cli": "^7.20.7",
     "@babel/core": "^7.20.12",
