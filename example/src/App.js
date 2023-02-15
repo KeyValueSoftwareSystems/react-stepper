@@ -1,31 +1,16 @@
-import { useEffect } from 'react';
-import VerticalStepper from 'vertical-stepper';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-
+import MyLibrary from "vertical-stepper";
 function App() {
-  useEffect(() => {
-    const verticalStepperInstance = new VerticalStepper();
-    verticalStepperInstance.myMethod();
-  }, []);
-  
+  const myLibraryInstance = new MyLibrary();
+  console.log("myLibraryInstance", myLibraryInstance);
+  myLibraryInstance.myMethod();
   return (
+    <>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <h1>Hello World!</h1>
     </div>
+    </>
   );
 }
 

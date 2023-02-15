@@ -1,0 +1,24 @@
+{
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint", "react-hooks"],
+    "extends": [
+      "standard",
+      "standard-react",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:@typescript-eslint/eslint-recommended"
+    ],
+    "settings": {
+      "react": {
+        "version": "18"
+      }
+    },
+    "rules": {
+      "@typescript-eslint/explicit-function-return-type": "offered",
+      "@typescript-eslint/no-empty-function": "off",
+      "@typescript-eslint/no-explicit-any": "off",
+      "@typescript-eslint/no-unused-vars": "error",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "react/prop-types": "off"
+    }
+  }
