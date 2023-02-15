@@ -87,5 +87,8 @@
       "jsx",
       "node"
     ]
+  },
+  "dependencies": {
+    "sass-loader": "^13.2.0"
   }
 }
