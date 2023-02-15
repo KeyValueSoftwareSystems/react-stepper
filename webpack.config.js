@@ -26,7 +26,7 @@ const banner = `
 module.exports = {
   mode: "production",
   devtool: 'source-map',
-  entry: './src/lib/index.ts',
+  entry: './src/index.ts',
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'build'),
@@ -44,11 +44,15 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(m|j|t)s$/,
+        test: /\.(m|j|t|)s$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader'
         }
+      },
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader'
       },
       {
         test: /\.(sa|sc|c)ss$/,
