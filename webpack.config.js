@@ -55,11 +55,24 @@ module.exports = {
         loader: 'ts-loader'
       },
       {
-        test: /\.(sa|sc|c)ss$/,
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.scss$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          { loader: "css-loader", options: { sourceMap: true } },
-        ],
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                mode: 'local',
+                localIdentName: '[local]-[hash:base64:5]'
+              }
+            }
+          },
+          'sass-loader'
+        ]
       }
     ]
   },
@@ -70,6 +83,6 @@ module.exports = {
     new webpack.BannerPlugin(banner)
   ],
   resolve: {
-    extensions: ['.ts', '.js', '.json']
+    extensions: ['.ts', '.js', '.tsx', '.json', ".css", ".scss"]
   }
 };

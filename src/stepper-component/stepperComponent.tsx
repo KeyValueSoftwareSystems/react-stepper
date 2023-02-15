@@ -1,9 +1,9 @@
 import React from 'react';
-import './styles.css';
+import styles from './styles.scss';
 
 const Stepper = () => {
     return (
-    <div className="stepperContainer">
+    <div className={styles.stepperContainer}>
       Demo
     </div>
     );

@@ -14,6 +14,9 @@
       "lib": ["es2018", "dom"],
       "moduleResolution": "node",
     },
+    "files": [
+      "global.d.ts"
+    ],
     "include": ["src"],
     "exclude": ["src/**/tests"],
 }
