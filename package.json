@@ -58,6 +58,7 @@
     "react-scripts": "5.0.1",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.5",
+    "ts-loader": "^9.4.2",
     "typescript": "^4.9.5",
     "url-loader": "^4.1.1",
     "webpack": "^5.75.0",
@@ -89,6 +90,7 @@
     ]
   },
   "dependencies": {
+    "sass": "^1.58.1",
     "sass-loader": "^13.2.0"
   }
 }

@@ -1,17 +1,22 @@
 {
     "compilerOptions": {
+      "jsx": "react",
       "noImplicitAny": true,
       "outDir": "build/types",
       "module": "esnext",
       "target": "es5",
       "allowJs": true,
       "sourceMap": true,
+      "noEmit": false,
       "declaration": true,
-      "emitDeclarationOnly": true,
       "suppressImplicitAnyIndexErrors": true,
+      "allowSyntheticDefaultImports": true,
       "lib": ["es2018", "dom"],
       "moduleResolution": "node",
     },
-    "include": ["src/lib"],
-    "exclude": ["src/lib/**/tests"],
+    "files": [
+      "global.d.ts"
+    ],
+    "include": ["src"],
+    "exclude": ["src/**/tests"],
 }
