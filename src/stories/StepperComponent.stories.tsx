@@ -11,11 +11,25 @@ export default {
     },
   } as ComponentMeta<typeof Stepper>;
 
+
   const Template: ComponentStory<typeof Stepper> = (args) => <Stepper {...args} />;
 
 export const LoggedIn = Template.bind({});
 LoggedIn.args = {
   steps: [{
-    label: 'Jane Doe',
+    label: 'Step 1',
+    description: 'The quick brown fox jumps over the lazy dog'
+  },
+  {
+    label: 'Step 2',
+    description: 'The quick brown fox jumps over the lazy dog'
+  },
+  {
+    label: 'Step 3',
+    description: 'The quick brown fox jumps over the lazy dog'
+  },
+  {
+    label: 'Step 4',
+    description: 'The quick brown fox jumps over the lazy dog'
   }],
 };

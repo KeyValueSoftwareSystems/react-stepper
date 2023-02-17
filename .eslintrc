@@ -1,24 +1,33 @@
 {
-    "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint", "react-hooks"],
-    "extends": [
-      "standard",
-      "standard-react",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:@typescript-eslint/eslint-recommended"
-    ],
-    "settings": {
-      "react": {
-        "version": "18"
-      }
+  "ignorePatterns": ["**/*.d.ts", "node_modules/", "src/stories", "src/tests"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
     },
-    "rules": {
-      "@typescript-eslint/explicit-function-return-type": "offered",
-      "@typescript-eslint/no-empty-function": "off",
-      "@typescript-eslint/no-explicit-any": "off",
-      "@typescript-eslint/no-unused-vars": "error",
-      "react-hooks/rules-of-hooks": "error",
-      "react-hooks/exhaustive-deps": "warn",
-      "react/prop-types": "off"
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-hooks"
+  ],
+  "rules": {
+    "no-console": "warn",
+    "@typescript-eslint/explicit-function-return-type": "error",
+    "react/prop-types": "warn",
+    "indent": ["error", 2],
+    "arrow-body-style": ["error", "as-needed"]
+  },
+  "settings": {
+    "react": {
+      "version": "^18.0.2"
     }
   }
+}

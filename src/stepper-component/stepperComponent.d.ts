@@ -1,3 +1,0 @@
-interface stepTypes {
-    label: string
-}
