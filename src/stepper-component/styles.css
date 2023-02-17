@@ -1,0 +1,24 @@
+.stepperContainer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.eachBubble {
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    background-color: blue;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.eachStep {
+    display: flex;
+    flex-direction: column;
+    align-items: 'center'
+}
