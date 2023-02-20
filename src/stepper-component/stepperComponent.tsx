@@ -1,21 +1,43 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import React, { useState, useEffect } from 'react';
 import './styles.css';
-import { stepTypes } from './types';
+import { Istep, IstepperProps } from './types';
+import whiteTick from '../assets/white-tick.svg';
 
-const Stepper = (props: { steps: stepTypes[]}): any => {
-  const { steps } = props;
+const Stepper = (props: IstepperProps): any => {
+  const { steps, currentActiveStepIndex } = props;
 
-  const [stepVal, setSteps] = useState([]);
+  // const whiteTick = require('../assets/white-tick.svg') as string;
+  const [stepsVal, setSteps] = useState<Istep[]>([]);
+  const [currentActiveStepIndexVal, setCurrentActiveStepIndexVal] = useState<number>()
 
-  useEffect(()      => {
+  useEffect(() => {
     setSteps(steps);
   }, [steps]);
+
+  useEffect(() => {
+    setCurrentActiveStepIndexVal(currentActiveStepIndex ?? 0);
+  }, [currentActiveStepIndex]);
+
   return (
     <div className="stepperContainer">
-      {stepVal?.map((step, index) => (index < stepVal?.length - 1) && (
+      {stepsVal?.map((step: Istep, index: number) => (
         <div key={index} className="eachStep">
           <div className='bubbleLineWrapper'>
-            <div className='eachBubble'>{index + 1}</div>
+            <div
+              className={`eachBubble
+              ${index === currentActiveStepIndexVal && 'activeStepBubble'}
+              ${index > currentActiveStepIndexVal && 'inactiveStepBubble'}`}
+            >
+              {currentActiveStepIndexVal > index && (
+                <img
+                  src={whiteTick}
+                  className="whiteTickImg"
+                  alt=""
+                />
+              )
+              || index + 1}
+            </div>
             <div className='eachLabel'>
               {step.label && (
                 <span className='labelTitle'>
@@ -28,29 +50,12 @@ const Stepper = (props: { steps: stepTypes[]}): any => {
                 </span>
               )}
             </div>
-            <div className='lineSeparator' />
+            {index < stepsVal?.length - 1 && (
+              <div className={`lineSeparator ${(index > currentActiveStepIndexVal - 1) && 'activeStepLineSeparator'}`} />
+            )}
           </div>
         </div>
       ))}
-      <div className="eachStep">
-        <div className='bubbleLineWrapper'>
-          <div className='eachBubble'>
-            {stepVal?.length}
-          </div>
-          <div className='eachLabel'>
-            {stepVal[stepVal?.length - 1]?.label && (
-              <span className='labelTitle'>
-                {stepVal[stepVal?.length - 1]?.label}
-              </span>
-            )}
-            {stepVal[stepVal?.length - 1]?.description && (
-              <span className='labelDescription'>
-                {stepVal[stepVal?.length - 1]?.description}
-              </span>
-            )}
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

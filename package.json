@@ -19,6 +19,7 @@
   "engines": {
     "node": ">=10"
   },
+  "appRoot": "src",
   "repository": {
     "type": "github",
     "url": "https://github.com/aarathyKeyvalue/vertical-stepper"

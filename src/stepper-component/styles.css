@@ -20,6 +20,21 @@
   align-items: center;
   justify-content: center;
   overflow: visible;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  border: 7px solid;
+}
+.activeStepBubble {
+  border: 7px solid #CBCBEF
+}
+.inactiveStepBubble {
+  opacity: 0.4;
+}
+.whiteTickImg {
+  object-fit: cover;
+  width: 10px;
+  height: 8px;
 }
 
 .eachStep {
@@ -58,4 +73,7 @@
   width: 1px;
   border-right: 2px solid #dfdff2;
   margin: 4px 0;
+}
+.activeStepLineSeparator {
+  border-right: 2px dashed #dfdff2;
 }

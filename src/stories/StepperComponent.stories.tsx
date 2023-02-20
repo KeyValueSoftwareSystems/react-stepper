@@ -32,4 +32,5 @@ LoggedIn.args = {
     label: 'Step 4',
     description: 'The quick brown fox jumps over the lazy dog'
   }],
+  currentActiveStepIndex: 2
 };
