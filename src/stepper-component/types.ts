@@ -1,12 +1,15 @@
-export interface Istep {
+import { ReactElement } from "react"
+
+export interface IStep {
     label: string,
     description?: string,
     status: string
 }
 
-export interface IstepperProps {
-    steps: Istep[],
+export interface IStepperProps {
+    steps: IStep[],
     currentActiveStepIndex: number,
     onStepClick?(stepIndex: number): void,
-    enableStepClick: boolean
+    enableStepClick?: boolean,
+    renderAdornment?(step: IStep, index: number): ReactElement
 }

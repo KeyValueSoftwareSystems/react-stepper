@@ -1,13 +1,12 @@
 import React, { useState, useEffect, ReactElement } from 'react';
 import styles from './styles';
-import { Istep, IstepperProps } from './types';
-import whiteTick from '../assets/white-tick.svg';
-import { STEP_STATUSES } from './constants';
+import { IStep, IStepperProps } from './types';
+import Bubble from '../bubble';
 
-const Stepper = (props: IstepperProps): ReactElement => {
-  const { steps, currentActiveStepIndex, onStepClick, enableStepClick = false } = props;
+const Stepper = (props: IStepperProps): ReactElement => {
+  const { steps, currentActiveStepIndex, onStepClick, enableStepClick = false, renderAdornment } = props;
 
-  const [currentActiveStepIndexVal, setCurrentActiveStepIndexVal] = useState<number>()
+  const [currentActiveStepIndexVal, setCurrentActiveStepIndexVal] = useState<number>();
 
   useEffect(() => {
     setCurrentActiveStepIndexVal(currentActiveStepIndex ?? 0);
@@ -15,34 +14,24 @@ const Stepper = (props: IstepperProps): ReactElement => {
 
   const handleStepClick = (stepIndex: number): void => {
     if (enableStepClick) {
-      if (onStepClick !== undefined ) onStepClick(stepIndex);
+      if (onStepClick) onStepClick(stepIndex);
       else setCurrentActiveStepIndexVal(stepIndex);
     }
   }
 
   return (
     <div style={styles.stepperContainer}>
-      {steps?.map((step: Istep, index: number): ReactElement => (
+      {steps?.map((step: IStep, index: number): ReactElement => (
         <div key={index} style={styles.eachStep}>
           <div style={styles.bubbleLineWrapper}>
-            <div
-              style={{...styles.eachBubble,
-                ...((enableStepClick && styles.cursorPointer) || {}),
-                ...((index === currentActiveStepIndexVal) && styles.activeStepBubble || {}),
-                ...((step.status === STEP_STATUSES.UNVISITED && currentActiveStepIndexVal !== index) && styles.inactiveStepBubble || {})
-              }}
-              onClick={(): void => handleStepClick(index)}
-              role="presentation"
-            >
-              {step?.status === STEP_STATUSES.COMPLETED && (
-                <img
-                  src={whiteTick}
-                  style={styles.whiteTickImg}
-                  alt=""
-                />
-              )
-              || index + 1}
-            </div>
+            <Bubble
+              step={step}
+              index={index}
+              enableStepClick={enableStepClick}
+              currentActiveStepIndexVal= {currentActiveStepIndexVal}
+              handleStepClick={handleStepClick}
+              renderAdornment={renderAdornment}
+            />
             <div style={styles.eachLabel}>
               {step?.label && (
                 <span
