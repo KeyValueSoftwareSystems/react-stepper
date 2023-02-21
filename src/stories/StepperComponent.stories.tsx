@@ -32,5 +32,7 @@ LoggedIn.args = {
     label: 'Step 4',
     description: 'The quick brown fox jumps over the lazy dog'
   }],
-  currentActiveStepIndex: 2
+  currentActiveStepIndex: 2,
+  enableStepClick: true,
+  // onStepClick: (stepIndex: number) => console.log("🚀 ~ file: StepperComponent.stories.tsx:37 ~ stepIndex", stepIndex)
 };

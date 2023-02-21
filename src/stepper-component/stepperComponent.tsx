@@ -1,35 +1,38 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ReactElement } from 'react';
 import './styles.css';
 import { Istep, IstepperProps } from './types';
 import whiteTick from '../assets/white-tick.svg';
+import { STEP_STATUSES } from './constants';
 
-const Stepper = (props: IstepperProps): any => {
-  const { steps, currentActiveStepIndex } = props;
+const Stepper = (props: IstepperProps): ReactElement => {
+  const { steps, currentActiveStepIndex, onStepClick, enableStepClick = false } = props;
 
-  // const whiteTick = require('../assets/white-tick.svg') as string;
-  const [stepsVal, setSteps] = useState<Istep[]>([]);
   const [currentActiveStepIndexVal, setCurrentActiveStepIndexVal] = useState<number>()
-
-  useEffect(() => {
-    setSteps(steps);
-  }, [steps]);
 
   useEffect(() => {
     setCurrentActiveStepIndexVal(currentActiveStepIndex ?? 0);
   }, [currentActiveStepIndex]);
 
+  const handleStepClick = (stepIndex: number): void => {
+    if (enableStepClick) {
+      if (onStepClick !== undefined ) onStepClick(stepIndex);
+      else setCurrentActiveStepIndexVal(stepIndex);
+    }
+  }
+
   return (
     <div className="stepperContainer">
-      {stepsVal?.map((step: Istep, index: number) => (
+      {steps?.map((step: Istep, index: number): ReactElement => (
         <div key={index} className="eachStep">
           <div className='bubbleLineWrapper'>
             <div
               className={`eachBubble
+              ${enableStepClick && 'cursorPointer'}
               ${index === currentActiveStepIndexVal && 'activeStepBubble'}
-              ${index > currentActiveStepIndexVal && 'inactiveStepBubble'}`}
+              ${(step.status === STEP_STATUSES.UNVISITED && currentActiveStepIndexVal !== index) && 'inactiveStepBubble'}`}
+              onClick={(): void => handleStepClick(index)}
             >
-              {currentActiveStepIndexVal > index && (
+              {step?.status === STEP_STATUSES.COMPLETED && (
                 <img
                   src={whiteTick}
                   className="whiteTickImg"
@@ -40,17 +43,17 @@ const Stepper = (props: IstepperProps): any => {
             </div>
             <div className='eachLabel'>
               {step.label && (
-                <span className='labelTitle'>
+                <span className={`labelTitle ${index === currentActiveStepIndexVal && 'activeLabelTitle'}`}>
                   {step?.label}
                 </span>
               )}
               {step?.description && (
-                <span className='labelDescription'>
+                <span className={`labelDescription ${index === currentActiveStepIndexVal && 'activeLabelDescription'}`}>
                   {step?.description}
                 </span>
               )}
             </div>
-            {index < stepsVal?.length - 1 && (
+            {index < steps?.length - 1 && (
               <div className={`lineSeparator ${(index > currentActiveStepIndexVal - 1) && 'activeStepLineSeparator'}`} />
             )}
           </div>
