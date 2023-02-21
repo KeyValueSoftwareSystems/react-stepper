@@ -43,7 +43,11 @@ const Stepper = (props: IstepperProps): ReactElement => {
             </div>
             <div className='eachLabel'>
               {step.label && (
-                <span className={`labelTitle ${index === currentActiveStepIndexVal && 'activeLabelTitle'}`}>
+                <span
+                  className={`labelTitle ${index === currentActiveStepIndexVal && 'activeLabelTitle'}`}
+                  onClick={(): void => handleStepClick(index)}
+                  role="presentation"
+                >
                   {step?.label}
                 </span>
               )}
