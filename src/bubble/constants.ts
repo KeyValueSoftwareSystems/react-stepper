@@ -1,9 +1,5 @@
-const VISITED = 'visited';
-const UNVISITED = 'unvisited';
-const COMPLETED = 'completed';
-
-export const STEP_STATUSES = {
-  VISITED,
-  UNVISITED,
-  COMPLETED
-};
+export enum STEP_STATUSES {
+   VISITED = 'visited',
+   UNVISITED = 'unvisited',
+   COMPLETED = 'completed'
+}

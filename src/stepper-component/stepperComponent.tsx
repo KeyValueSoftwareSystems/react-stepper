@@ -4,7 +4,26 @@ import { IStep, IStepperProps } from './types';
 import Bubble from '../bubble';
 
 const Stepper = (props: IStepperProps): ReactElement => {
-  const { steps, currentActiveStepIndex, onStepClick, enableStepClick = false, renderAdornment } = props;
+  const {
+    steps,
+    currentActiveStepIndex,
+    enableStepClick = false,
+    onStepClick,
+    renderAdornment,
+    stylesOverride
+  } = props;
+
+  const {
+    getLabelDescriptionStyles,
+    getLabelTitleStyles,
+    getActiveLabelTitleStyles,
+    getActiveLabelDescriptionStyles,
+    getLineSeparatorStyles,
+    getInactiveLineSeparatorStyles,
+    getBubbleStyles,
+    getActiveBubbleStyles,
+    getInActiveBubbleStyles
+  } = stylesOverride;
 
   const [currentActiveStepIndexVal, setCurrentActiveStepIndexVal] = useState<number>();
 
@@ -31,12 +50,18 @@ const Stepper = (props: IStepperProps): ReactElement => {
               currentActiveStepIndexVal= {currentActiveStepIndexVal}
               handleStepClick={handleStepClick}
               renderAdornment={renderAdornment}
+              getBubbleStyles={getBubbleStyles}
+              getActiveBubbleStyles={getActiveBubbleStyles}
+              getInActiveBubbleStyles={getInActiveBubbleStyles}
             />
             <div style={styles.eachLabel}>
               {step?.label && (
                 <span
                   style={{...styles.labelTitle,
-                    ...((index === currentActiveStepIndexVal && styles.activeLabelTitle) || {})}}
+                    ...((getLabelTitleStyles && getLabelTitleStyles(step, index)) || {}),
+                    ...((index === currentActiveStepIndexVal && styles.activeLabelTitle) || {}),
+                    ...((index === currentActiveStepIndexVal && getActiveLabelTitleStyles && getActiveLabelTitleStyles(step, index)) || {})
+                  }}
                   onClick={(): void => handleStepClick(index)}
                   role="presentation"
                 >
@@ -45,14 +70,21 @@ const Stepper = (props: IStepperProps): ReactElement => {
               )}
               {step?.description && (
                 <span style={{...styles.labelDescription,
-                  ...((index === currentActiveStepIndexVal) && styles.activeLabelDescription|| {})}}>
+                  ...((getLabelDescriptionStyles && getLabelDescriptionStyles(step, index)) || {}),
+                  ...((index === currentActiveStepIndexVal) && styles.activeLabelDescription|| {}),
+                  ...((index === currentActiveStepIndexVal && getActiveLabelDescriptionStyles && getActiveLabelDescriptionStyles(step, index)) || {})
+                }}>
                   {step.description}
                 </span>
               )}
             </div>
             {index < steps?.length - 1 && (
               <div style={{...styles.lineSeparator,
-                ...((index > currentActiveStepIndexVal - 1) && styles.activeStepLineSeparator || {})}} />
+                ...((getLineSeparatorStyles && getLineSeparatorStyles(step, index)) || {}),
+                ...((index > currentActiveStepIndexVal - 1) && styles.inactiveStepLineSeparator || {}),
+                ...((index > currentActiveStepIndexVal - 1&& getInactiveLineSeparatorStyles && getInactiveLineSeparatorStyles(step, index)) || {})
+
+              }} />
             )}
           </div>
         </div>

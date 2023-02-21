@@ -1,5 +1,4 @@
 
-
 const styles = {
   stepperContainer: {
     display: 'flex',
@@ -16,7 +15,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     position: 'relative'
-      
+
   },
   bubbleLineWrapper: {
     display: 'flex',
@@ -55,7 +54,7 @@ const styles = {
     borderRight: '2px solid #dfdff2',
     margin: '4px 0'
   },
-  activeStepLineSeparator: {
+  inactiveStepLineSeparator: {
     borderRight: '2px dashed #dfdff2'
   }
 } as const

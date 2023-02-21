@@ -23,7 +23,13 @@
     "@typescript-eslint/explicit-function-return-type": "error",
     "react/prop-types": "warn",
     "indent": ["error", 2],
-    "arrow-body-style": ["error", "as-needed"]
+    "arrow-body-style": ["error", "as-needed"],
+    "no-trailing-spaces":"error",
+    "comma-dangle":"error",
+    "default-case":"error",
+    "block-spacing": "error",
+    "max-len":["warn", 150],
+    "space-before-blocks":"error"
   },
   "settings": {
     "react": {

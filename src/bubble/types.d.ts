@@ -7,5 +7,8 @@ export interface IBubbleProps {
     renderAdornment?(step: IStep, index: number): ReactElement,
     index: number,
     currentActiveStepIndexVal: number,
-    handleStepClick(index: number): void
+    handleStepClick(index: number): void,
+    getBubbleStyles?(step: IStep, index: number): object,
+    getActiveBubbleStyles?(step: IStep, index: number): object,
+    getInActiveBubbleStyles?(step: IStep, index: number): object,
 }
