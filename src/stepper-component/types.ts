@@ -8,7 +8,7 @@ export interface IStep {
 
 export interface IStepperProps {
     steps: IStep[],
-    currentActiveStepIndex: number,
+    currentActiveStepIndex?: number,
     onStepClick?(stepIndex: number): void,
     enableStepClick?: boolean,
     renderAdornment?(step: IStep, index: number): ReactElement,

@@ -10,7 +10,7 @@ const Stepper = (props: IStepperProps): ReactElement => {
     enableStepClick = false,
     onStepClick,
     renderAdornment,
-    stylesOverride
+    stylesOverride = {}
   } = props;
 
   const {
@@ -81,9 +81,9 @@ const Stepper = (props: IStepperProps): ReactElement => {
             {index < steps?.length - 1 && (
               <div style={{...styles.lineSeparator,
                 ...((getLineSeparatorStyles && getLineSeparatorStyles(step, index)) || {}),
-                ...((index > currentActiveStepIndexVal - 1) && styles.inactiveStepLineSeparator || {}),
-                ...((index > currentActiveStepIndexVal - 1&& getInactiveLineSeparatorStyles && getInactiveLineSeparatorStyles(step, index)) || {})
-
+                ...((currentActiveStepIndexVal && index > currentActiveStepIndexVal - 1) && styles.inactiveStepLineSeparator || {}),
+                ...((currentActiveStepIndexVal && index > currentActiveStepIndexVal - 1
+                  && getInactiveLineSeparatorStyles && getInactiveLineSeparatorStyles(step, index)) || {})
               }} />
             )}
           </div>
