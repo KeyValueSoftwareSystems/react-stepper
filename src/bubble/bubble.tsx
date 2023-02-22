@@ -1,9 +1,9 @@
-import React, {ReactElement} from "react";
+import React, { FC } from "react";
 import { IBubbleProps } from "./types";
 import whiteTick from '../assets/white-tick.svg';
 import { STEP_STATUSES } from './constants';
 import styles from './styles';
-const Bubble = (props: IBubbleProps): ReactElement => {
+const Bubble: FC<IBubbleProps> = (props) => {
   const {
     step,
     enableStepClick,

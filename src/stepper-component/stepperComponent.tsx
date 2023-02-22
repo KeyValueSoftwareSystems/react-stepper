@@ -1,9 +1,9 @@
-import React, { useState, useEffect, ReactElement } from 'react';
+import React, { useState, useEffect, ReactElement, FC } from 'react';
 import styles from './styles';
 import { IStep, IStepperProps } from './types';
 import Bubble from '../bubble';
 
-const Stepper = (props: IStepperProps): ReactElement => {
+const Stepper: FC<IStepperProps> = (props) => {
   const {
     steps,
     currentActiveStepIndex,
