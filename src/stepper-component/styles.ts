@@ -55,6 +55,9 @@ const styles = {
   activeLabelDescription: {
     color: '#676767'
   },
+  cursorPointer: {
+    cursor: 'pointer'
+  },
   lineSeparator: {
     height: '22px',
     width: '1px',

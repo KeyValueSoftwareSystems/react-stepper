@@ -2,7 +2,7 @@ import React, { useState, useEffect, ReactElement, FC } from 'react';
 import styles from './styles';
 import { IStep, IStepperProps } from './types';
 import Bubble from '../bubble';
-import { LABEL_POSITION } from '../bubble/constants';
+import { LABEL_POSITION } from '../constants';
 
 const Stepper: FC<IStepperProps> = (props) => {
   const {
@@ -27,10 +27,10 @@ const Stepper: FC<IStepperProps> = (props) => {
     getInActiveBubbleStyles
   } = stylesOverride;
 
-  const [currentActiveStepIndexVal, setCurrentActiveStepIndexVal] = useState<number>();
+  const [currentActiveStepIndexVal, setCurrentActiveStepIndexVal] = useState<number>(0);
 
   useEffect(() => {
-    setCurrentActiveStepIndexVal(currentActiveStepIndex ?? 0);
+    setCurrentActiveStepIndexVal((currentActiveStepIndex ?? 0) as  number);
   }, [currentActiveStepIndex]);
 
   const handleStepClick = (stepIndex: number): void => {
@@ -65,6 +65,7 @@ const Stepper: FC<IStepperProps> = (props) => {
               {step?.label && (
                 <span
                   style={{...styles.labelTitle,
+                    ...((enableStepClick && styles.cursorPointer) || {}),
                     ...((getLabelTitleStyles && getLabelTitleStyles(step, index)) || {}),
                     ...((index === currentActiveStepIndexVal && styles.activeLabelTitle) || {}),
                     ...((index === currentActiveStepIndexVal && getActiveLabelTitleStyles && getActiveLabelTitleStyles(step, index)) || {})
@@ -77,10 +78,14 @@ const Stepper: FC<IStepperProps> = (props) => {
               )}
               {step?.description && (
                 <span style={{...styles.labelDescription,
+                  ...((enableStepClick && styles.cursorPointer) || {}),
                   ...((getLabelDescriptionStyles && getLabelDescriptionStyles(step, index)) || {}),
                   ...((index === currentActiveStepIndexVal) && styles.activeLabelDescription|| {}),
                   ...((index === currentActiveStepIndexVal && getActiveLabelDescriptionStyles && getActiveLabelDescriptionStyles(step, index)) || {})
-                }}>
+                }}
+                onClick={(): void => handleStepClick(index)}
+                role="presentation"
+                >
                   {step.description}
                 </span>
               )}
@@ -88,8 +93,8 @@ const Stepper: FC<IStepperProps> = (props) => {
             {index < steps?.length - 1 && (
               <div style={{...styles.lineSeparator,
                 ...((getLineSeparatorStyles && getLineSeparatorStyles(step, index)) || {}),
-                ...((currentActiveStepIndexVal && index > currentActiveStepIndexVal - 1) && styles.inactiveStepLineSeparator || {}),
-                ...((currentActiveStepIndexVal && index > currentActiveStepIndexVal - 1
+                ...((index > currentActiveStepIndexVal - 1) && styles.inactiveStepLineSeparator || {}),
+                ...((index > currentActiveStepIndexVal - 1
                   && getInactiveLineSeparatorStyles && getInactiveLineSeparatorStyles(step, index)) || {})
               }} />
             )}

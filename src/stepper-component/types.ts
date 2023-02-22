@@ -1,5 +1,5 @@
 import { ReactElement } from "react"
-import { LABEL_POSITION } from "../bubble/constants"
+import { LABEL_POSITION } from "../constants"
 export interface IStep {
     label: string,
     description?: string,
