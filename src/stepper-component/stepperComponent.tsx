@@ -2,6 +2,7 @@ import React, { useState, useEffect, ReactElement, FC } from 'react';
 import styles from './styles';
 import { IStep, IStepperProps } from './types';
 import Bubble from '../bubble';
+import { LABEL_POSITION } from '../bubble/constants';
 
 const Stepper: FC<IStepperProps> = (props) => {
   const {
@@ -10,7 +11,8 @@ const Stepper: FC<IStepperProps> = (props) => {
     enableStepClick = false,
     onStepClick,
     renderAdornment,
-    stylesOverride = {}
+    stylesOverride = {},
+    labelPosition = LABEL_POSITION.RIGHT
   } = props;
 
   const {
@@ -54,7 +56,12 @@ const Stepper: FC<IStepperProps> = (props) => {
               getActiveBubbleStyles={getActiveBubbleStyles}
               getInActiveBubbleStyles={getInActiveBubbleStyles}
             />
-            <div style={styles.eachLabel}>
+            <div
+              style={{
+                ...styles.labelContainer,
+                ...styles[`labelContainer__${labelPosition}`] ?? {}
+              }}
+            >
               {step?.label && (
                 <span
                   style={{...styles.labelTitle,

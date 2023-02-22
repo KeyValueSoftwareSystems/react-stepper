@@ -23,14 +23,21 @@ const styles = {
     alignItems: 'center',
     width: 'fit-content'
   },
-  eachLabel: {
+  labelContainer: {
     position: 'absolute',
-    top: '4px',
-    left: '44px',
     width: 'max-content',
     height: 'fit-content',
     display: 'flex',
     flexDirection: 'column'
+  },
+  labelContainer__right: {
+    top: '4px',
+    left: '44px'
+  },
+  labelContainer__left: {
+    top: '4px',
+    right: '44px',
+    alignItems: 'end'
   },
   labelTitle: {
     color: '#4F4F4F'

@@ -3,3 +3,8 @@ export enum STEP_STATUSES {
    UNVISITED = 'unvisited',
    COMPLETED = 'completed'
 }
+
+export enum LABEL_POSITION {
+   LEFT = 'left',
+   RIGHT = 'right'
+}

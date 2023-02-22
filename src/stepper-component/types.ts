@@ -1,5 +1,5 @@
 import { ReactElement } from "react"
-
+import { LABEL_POSITION } from "../bubble/constants"
 export interface IStep {
     label: string,
     description?: string,
@@ -12,7 +12,8 @@ export interface IStepperProps {
     onStepClick?(stepIndex: number): void,
     enableStepClick?: boolean,
     renderAdornment?(step: IStep, index: number): ReactElement,
-    stylesOverride?: IStylesOverride
+    stylesOverride?: IStylesOverride,
+    labelPosition?: LABEL_POSITION.LEFT | LABEL_POSITION.RIGHT
 }
 
 export interface IStylesOverride {

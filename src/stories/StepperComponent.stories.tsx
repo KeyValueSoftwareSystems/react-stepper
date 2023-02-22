@@ -35,5 +35,6 @@ LoggedIn.args = {
   currentActiveStepIndex: 2,
   enableStepClick: true,
   // onStepClick: (stepIndex: number) => console.log("🚀 ~ file: StepperComponent.stories.tsx:37 ~ stepIndex", stepIndex)
-  // renderAdornment: (step, index) => {}
+  // renderAdornment: (step, index) => {},
+  labelPosition: 'left'
 };
