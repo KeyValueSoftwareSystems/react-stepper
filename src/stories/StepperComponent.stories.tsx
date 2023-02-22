@@ -14,8 +14,8 @@ export default {
 
   const Template: ComponentStory<typeof Stepper> = (args) => <Stepper {...args} />;
 
-export const LoggedIn = Template.bind({});
-LoggedIn.args = {
+export const VerticalStepper = Template.bind({});
+VerticalStepper.args = {
   steps: [{
     label: 'Step 1',
     description: 'The quick brown fox jumps over the lazy dog'
@@ -32,5 +32,9 @@ LoggedIn.args = {
     label: 'Step 4',
     description: 'The quick brown fox jumps over the lazy dog'
   }],
-  currentActiveStepIndex: 2
+  currentActiveStepIndex: 2,
+  enableStepClick: true,
+  // onStepClick: (stepIndex: number) => console.log("🚀 ~ file: StepperComponent.stories.tsx:37 ~ stepIndex", stepIndex)
+  // renderAdornment: (step, index) => {},
+  // labelPosition: 'left'
 };

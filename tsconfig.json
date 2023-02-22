@@ -13,6 +13,7 @@
       "allowSyntheticDefaultImports": true,
       "lib": ["es2018", "dom"],
       "moduleResolution": "node",
+      "strictNullChecks": true
     },
     "files": [
       "global.d.ts"
