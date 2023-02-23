@@ -43,7 +43,7 @@ const Stepper: FC<IStepperProps> = (props) => {
   return (
     <div className={styles.stepperContainer}>
       {steps?.map((step: IStep, index: number): ReactElement => (
-        <div key={index} className={styles.eachStep}>
+        <div key={index} className={styles.eachStep} data-testId="stepper-steps">
           <div className={styles.bubbleLineWrapper}>
             <Bubble
               step={step}
@@ -68,6 +68,7 @@ const Stepper: FC<IStepperProps> = (props) => {
                   }}
                   onClick={(): void => handleStepClick(index)}
                   role="presentation"
+                  data-testId={`stepper-label-${index}`}
                 >
                   {step.label}
                 </span>
@@ -84,6 +85,7 @@ const Stepper: FC<IStepperProps> = (props) => {
                   }}
                   onClick={(): void => handleStepClick(index)}
                   role="presentation"
+                  data-testId={`stepper-desc-${index}`}
                 >
                   {step.description}
                 </span>

@@ -30,6 +30,7 @@ const Bubble: FC<IBubbleProps> = (props) => {
       }}
       onClick={(): void => handleStepClick(index)}
       role="presentation"
+      data-testId="stepper-bubble"
     >
       {(renderAdornment && renderAdornment(step, index))
     || (

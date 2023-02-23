@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-      "jsx": "react",
+      "jsx": "react-jsx",
       "noImplicitAny": true,
       "outDir": "build/types",
       "module": "esnext",
@@ -13,7 +13,8 @@
       "allowSyntheticDefaultImports": true,
       "lib": ["es2018", "dom"],
       "moduleResolution": "node",
-      "strictNullChecks": true
+      "strictNullChecks": true,
+      "esModuleInterop": true
     },
     "files": [
       "global.d.ts"
