@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { IBubbleProps } from "./types";
 import whiteTick from '../assets/white-tick.svg';
 import { STEP_STATUSES } from '../constants';
-import styles from './styles';
+import styles from './styles.module.scss';
 const Bubble: FC<IBubbleProps> = (props) => {
   const {
     step,
@@ -17,12 +17,14 @@ const Bubble: FC<IBubbleProps> = (props) => {
   } = props;
   return (
     <div
-      style={{...styles.eachBubble,
+      className={`${styles.eachBubble}
+      ${enableStepClick && styles.cursorPointer}
+      ${index === currentActiveStepIndexVal && styles.activeStepBubble}
+      ${step.status === STEP_STATUSES.UNVISITED && currentActiveStepIndexVal !== index && styles.inactiveStepBubble}
+      `}
+      style={{
         ...((getBubbleStyles && getBubbleStyles(step, index)) || {}),
-        ...((enableStepClick && styles.cursorPointer) || {}),
-        ...((index === currentActiveStepIndexVal) && styles.activeStepBubble || {}),
         ...((index === currentActiveStepIndexVal && getActiveBubbleStyles && getActiveBubbleStyles(step, index)) || {}),
-        ...((step.status === STEP_STATUSES.UNVISITED && currentActiveStepIndexVal !== index) && styles.inactiveStepBubble || {}),
         ...((step.status === STEP_STATUSES.UNVISITED && currentActiveStepIndexVal !== index
             && getInActiveBubbleStyles && getInActiveBubbleStyles(step, index)) || {})
       }}
@@ -35,7 +37,7 @@ const Bubble: FC<IBubbleProps> = (props) => {
         {step?.status === STEP_STATUSES.COMPLETED && (
           <img
             src={whiteTick}
-            style={styles.whiteTickImg}
+            className={styles.whiteTickImg}
             alt=""
           />)
         || index + 1}

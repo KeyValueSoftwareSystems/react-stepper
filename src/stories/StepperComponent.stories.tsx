@@ -36,5 +36,5 @@ VerticalStepper.args = {
   enableStepClick: true,
   // onStepClick: (stepIndex: number) => console.log("🚀 ~ file: StepperComponent.stories.tsx:37 ~ stepIndex", stepIndex)
   // renderAdornment: (step, index) => {},
-  // labelPosition: 'left'
+  // labelPosition: 'right'
 };

@@ -16,14 +16,16 @@ export interface IStepperProps {
     labelPosition?: LABEL_POSITION.LEFT | LABEL_POSITION.RIGHT
 }
 
+export type IStyleFunction = (step: IStep, index: number) => object
+
 export interface IStylesOverride {
-    getLabelDescriptionStyles?(step: IStep, index: number): object,
-    getLabelTitleStyles?(step: IStep, index: number): object,
-    getActiveLabelDescriptionStyles?(step: IStep, index: number): object,
-    getActiveLabelTitleStyles?(step: IStep, index: number): object,
-    getLineSeparatorStyles?(step: IStep, index: number): object,
-    getInactiveLineSeparatorStyles?(step: IStep, index: number): object,
-    getBubbleStyles?(step: IStep, index: number): object,
-    getActiveBubbleStyles?(step: IStep, index: number): object,
-    getInActiveBubbleStyles?(step: IStep, index: number): object,
+    getLabelDescriptionStyles?: IStyleFunction,
+    getLabelTitleStyles?: IStyleFunction,
+    getActiveLabelDescriptionStyles?: IStyleFunction,
+    getActiveLabelTitleStyles?: IStyleFunction,
+    getLineSeparatorStyles?: IStyleFunction,
+    getInactiveLineSeparatorStyles?: IStyleFunction,
+    getBubbleStyles?: IStyleFunction,
+    getActiveBubbleStyles?: IStyleFunction,
+    getInActiveBubbleStyles?: IStyleFunction,
 }
