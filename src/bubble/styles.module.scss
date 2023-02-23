@@ -1,0 +1,29 @@
+.eachBubble {
+    border-radius: 50%;
+    height: 24px;
+    width: 24px;
+    background: #312ec0;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    border: 7px solid;
+  }
+  .activeStepBubble {
+    border: 7px solid #CBCBEF;
+  }
+  .inactiveStepBubble {
+    opacity: 0.4;
+  }
+  .whiteTickImg {
+    object-fit: cover;
+    width: 10px;
+    height: 8px;
+  }
+  .cursorPointer {
+    cursor: pointer;
+  }

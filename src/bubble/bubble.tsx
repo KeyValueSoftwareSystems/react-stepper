@@ -2,31 +2,32 @@ import React, { FC } from "react";
 import { IBubbleProps } from "./types";
 import whiteTick from '../assets/white-tick.svg';
 import { STEP_STATUSES } from '../constants';
-import styles from './styles';
+import styles from './styles.module.scss';
 const Bubble: FC<IBubbleProps> = (props) => {
   const {
     step,
-    enableStepClick,
     renderAdornment,
     index,
-    currentActiveStepIndexVal,
-    handleStepClick,
+    currentStepIndex,
+    handleStepClick = null,
     getBubbleStyles,
     getActiveBubbleStyles,
     getInActiveBubbleStyles
   } = props;
   return (
     <div
-      style={{...styles.eachBubble,
+      className={`${styles.eachBubble}
+      ${handleStepClick && styles.cursorPointer}
+      ${index === currentStepIndex && styles.activeStepBubble}
+      ${step.status === STEP_STATUSES.UNVISITED && currentStepIndex !== index && styles.inactiveStepBubble}
+      `}
+      style={{
         ...((getBubbleStyles && getBubbleStyles(step, index)) || {}),
-        ...((enableStepClick && styles.cursorPointer) || {}),
-        ...((index === currentActiveStepIndexVal) && styles.activeStepBubble || {}),
-        ...((index === currentActiveStepIndexVal && getActiveBubbleStyles && getActiveBubbleStyles(step, index)) || {}),
-        ...((step.status === STEP_STATUSES.UNVISITED && currentActiveStepIndexVal !== index) && styles.inactiveStepBubble || {}),
-        ...((step.status === STEP_STATUSES.UNVISITED && currentActiveStepIndexVal !== index
+        ...((index === currentStepIndex && getActiveBubbleStyles && getActiveBubbleStyles(step, index)) || {}),
+        ...((step.status === STEP_STATUSES.UNVISITED && currentStepIndex !== index
             && getInActiveBubbleStyles && getInActiveBubbleStyles(step, index)) || {})
       }}
-      onClick={(): void => handleStepClick(index)}
+      onClick={(): void | null => handleStepClick && handleStepClick()}
       role="presentation"
       data-testId="stepper-bubble"
     >
@@ -36,7 +37,7 @@ const Bubble: FC<IBubbleProps> = (props) => {
         {step?.status === STEP_STATUSES.COMPLETED && (
           <img
             src={whiteTick}
-            style={styles.whiteTickImg}
+            className={styles.whiteTickImg}
             alt=""
           />)
         || index + 1}

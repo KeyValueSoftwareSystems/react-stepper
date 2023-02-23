@@ -32,9 +32,8 @@ VerticalStepper.args = {
     label: 'Step 4',
     description: 'The quick brown fox jumps over the lazy dog'
   }],
-  currentActiveStepIndex: 2,
-  enableStepClick: true,
+  currentStepIndex: 2,
   // onStepClick: (stepIndex: number) => console.log("🚀 ~ file: StepperComponent.stories.tsx:37 ~ stepIndex", stepIndex)
   // renderAdornment: (step, index) => {},
-  // labelPosition: 'left'
+  // labelPosition: 'right'
 };
