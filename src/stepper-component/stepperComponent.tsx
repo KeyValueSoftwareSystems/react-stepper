@@ -1,5 +1,5 @@
 import React, { useState, useEffect, ReactElement, FC } from 'react';
-import styles from './styles.module.scss';
+import classes from './styles.module.scss';
 import { IStep, IStepperProps } from './types';
 import Bubble from '../bubble';
 import { LABEL_POSITION } from '../constants';
@@ -7,11 +7,10 @@ import { LABEL_POSITION } from '../constants';
 const Stepper: FC<IStepperProps> = (props) => {
   const {
     steps,
-    currentActiveStepIndex,
-    enableStepClick = false,
+    currentStepIndex,
     onStepClick,
-    renderAdornment,
-    stylesOverride = {},
+    renderBubble,
+    styles = {},
     labelPosition = LABEL_POSITION.RIGHT
   } = props;
 
@@ -25,80 +24,66 @@ const Stepper: FC<IStepperProps> = (props) => {
     getBubbleStyles,
     getActiveBubbleStyles,
     getInActiveBubbleStyles
-  } = stylesOverride;
-
-  const [currentActiveStepIndexVal, setCurrentActiveStepIndexVal] = useState<number>(0);
-
-  useEffect(() => {
-    setCurrentActiveStepIndexVal((currentActiveStepIndex ?? 0) as  number);
-  }, [currentActiveStepIndex]);
-
-  const handleStepClick = (stepIndex: number): void => {
-    if (enableStepClick) {
-      if (onStepClick) onStepClick(stepIndex);
-      else setCurrentActiveStepIndexVal(stepIndex);
-    }
-  }
+  } = styles;
 
   return (
-    <div className={styles.stepperContainer}>
-      {steps?.map((step: IStep, index: number): ReactElement => (
-        <div key={index} className={styles.eachStep} data-testId="stepper-steps">
-          <div className={styles.bubbleLineWrapper}>
+    <div className={classes.stepperContainer}>
+      {steps?.map((step: IStep, stepIndex: number): ReactElement => (
+        <div key={stepIndex} className={classes.eachStep} data-testId="stepper-steps">
+          <div className={classes.bubbleLineWrapper}>
             <Bubble
               step={step}
-              index={index}
-              enableStepClick={enableStepClick}
-              currentActiveStepIndexVal= {currentActiveStepIndexVal}
-              handleStepClick={handleStepClick}
-              renderAdornment={renderAdornment}
+              index={stepIndex}
+              currentStepIndex= {currentStepIndex}
+              handleStepClick={(): void => onStepClick && onStepClick(step, stepIndex)}
+              renderAdornment={renderBubble}
               getBubbleStyles={getBubbleStyles}
               getActiveBubbleStyles={getActiveBubbleStyles}
               getInActiveBubbleStyles={getInActiveBubbleStyles}
             />
-            <div className={`${styles.labelContainer} ${styles[`labelContainer__${labelPosition || LABEL_POSITION.RIGHT}`]}`}>
+            <div className={`${classes.labelContainer} ${classes[`labelContainer__${labelPosition || LABEL_POSITION.RIGHT}`]}`}>
               {step?.label && (
                 <span
-                  className={`${styles.labelTitle}
-                  ${enableStepClick && styles.cursorPointer}
-                  ${index === currentActiveStepIndexVal && styles.activeLabelTitle}`}
+                  className={`${classes.labelTitle}
+                  ${onStepClick && classes.cursorPointer}
+                  ${stepIndex === currentStepIndex && classes.activeLabelTitle}`}
                   style={{
-                    ...((getLabelTitleStyles && getLabelTitleStyles(step, index)) || {}),
-                    ...((index === currentActiveStepIndexVal && getActiveLabelTitleStyles && getActiveLabelTitleStyles(step, index)) || {})
+                    ...((getLabelTitleStyles && getLabelTitleStyles(step, stepIndex)) || {}),
+                    ...((stepIndex === currentStepIndex && getActiveLabelTitleStyles && getActiveLabelTitleStyles(step, stepIndex)) || {})
                   }}
-                  onClick={(): void => handleStepClick(index)}
+                  onClick={(): void => onStepClick && onStepClick(step, stepIndex)}
                   role="presentation"
-                  data-testId={`stepper-label-${index}`}
+                  data-testId={`stepper-label-${stepIndex}`}
                 >
                   {step.label}
                 </span>
               )}
               {step?.description && (
                 <span
-                  className={`${styles.labelDescription}
-                  ${enableStepClick && styles.cursorPointer}
-                  ${index === currentActiveStepIndexVal && styles.activeLabelDescription}`}
+                  className={`${classes.labelDescription}
+                  ${onStepClick && classes.cursorPointer}
+                  ${stepIndex === currentStepIndex && classes.activeLabelDescription}`}
                   style={{
-                    ...((getLabelDescriptionStyles && getLabelDescriptionStyles(step, index)) || {}),
-                    ...((index === currentActiveStepIndexVal &&
-                      getActiveLabelDescriptionStyles && getActiveLabelDescriptionStyles(step, index)) || {})
+                    ...((getLabelDescriptionStyles && getLabelDescriptionStyles(step, stepIndex)) || {}),
+                    ...((stepIndex === currentStepIndex &&
+                      getActiveLabelDescriptionStyles && getActiveLabelDescriptionStyles(step, stepIndex)) || {})
                   }}
-                  onClick={(): void => handleStepClick(index)}
+                  onClick={(): void => onStepClick && onStepClick(step, stepIndex)}
                   role="presentation"
-                  data-testId={`stepper-desc-${index}`}
+                  data-testId={`stepper-desc-${stepIndex}`}
                 >
                   {step.description}
                 </span>
               )}
             </div>
-            {index < steps?.length - 1 && (
+            {stepIndex < steps?.length - 1 && (
               <div
-                className={`${styles.lineSeparator}
-                ${index > currentActiveStepIndexVal - 1 && styles.inactiveStepLineSeparator}`}
+                className={`${classes.lineSeparator}
+                ${currentStepIndex && stepIndex > currentStepIndex - 1 && classes.inactiveStepLineSeparator}`}
                 style={{
-                  ...((getLineSeparatorStyles && getLineSeparatorStyles(step, index)) || {}),
-                  ...((index > currentActiveStepIndexVal - 1
-                  && getInactiveLineSeparatorStyles && getInactiveLineSeparatorStyles(step, index)) || {})
+                  ...((getLineSeparatorStyles && getLineSeparatorStyles(step, stepIndex)) || {}),
+                  ...(( currentStepIndex && stepIndex > currentStepIndex - 1
+                  && getInactiveLineSeparatorStyles && getInactiveLineSeparatorStyles(step, stepIndex)) || {})
                 }}
               />
             )}

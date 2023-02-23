@@ -6,11 +6,10 @@ import styles from './styles.module.scss';
 const Bubble: FC<IBubbleProps> = (props) => {
   const {
     step,
-    enableStepClick,
     renderAdornment,
     index,
-    currentActiveStepIndexVal,
-    handleStepClick,
+    currentStepIndex,
+    handleStepClick = null,
     getBubbleStyles,
     getActiveBubbleStyles,
     getInActiveBubbleStyles
@@ -18,17 +17,17 @@ const Bubble: FC<IBubbleProps> = (props) => {
   return (
     <div
       className={`${styles.eachBubble}
-      ${enableStepClick && styles.cursorPointer}
-      ${index === currentActiveStepIndexVal && styles.activeStepBubble}
-      ${step.status === STEP_STATUSES.UNVISITED && currentActiveStepIndexVal !== index && styles.inactiveStepBubble}
+      ${handleStepClick && styles.cursorPointer}
+      ${index === currentStepIndex && styles.activeStepBubble}
+      ${step.status === STEP_STATUSES.UNVISITED && currentStepIndex !== index && styles.inactiveStepBubble}
       `}
       style={{
         ...((getBubbleStyles && getBubbleStyles(step, index)) || {}),
-        ...((index === currentActiveStepIndexVal && getActiveBubbleStyles && getActiveBubbleStyles(step, index)) || {}),
-        ...((step.status === STEP_STATUSES.UNVISITED && currentActiveStepIndexVal !== index
+        ...((index === currentStepIndex && getActiveBubbleStyles && getActiveBubbleStyles(step, index)) || {}),
+        ...((step.status === STEP_STATUSES.UNVISITED && currentStepIndex !== index
             && getInActiveBubbleStyles && getInActiveBubbleStyles(step, index)) || {})
       }}
-      onClick={(): void => handleStepClick(index)}
+      onClick={(): void | null => handleStepClick && handleStepClick()}
       role="presentation"
       data-testId="stepper-bubble"
     >

@@ -8,15 +8,14 @@ export interface IStep {
 
 export interface IStepperProps {
     steps: IStep[],
-    currentActiveStepIndex?: number,
-    onStepClick?(stepIndex: number): void,
-    enableStepClick?: boolean,
-    renderAdornment?(step: IStep, index: number): ReactElement,
-    stylesOverride?: IStylesOverride,
+    currentStepIndex?: number,
+    onStepClick?(step: IStep, stepIndex: number): void,
+    renderBubble?(step: IStep, stepIndex: number): ReactElement,
+    styles?: IStylesOverride,
     labelPosition?: LABEL_POSITION.LEFT | LABEL_POSITION.RIGHT
 }
 
-export type IStyleFunction = (step: IStep, index: number) => object
+export type IStyleFunction = (step: IStep, stepIndex: number) => object
 
 export interface IStylesOverride {
     getLabelDescriptionStyles?: IStyleFunction,
