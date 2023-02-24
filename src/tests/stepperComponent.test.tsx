@@ -43,20 +43,7 @@ test("Stepper Component - Number of steps", async () => {
     expect(elements?.length).toBe(2);
 })
 
-test("Stepper Component - On Click function without config", async () => {
-    const steps: IStep[] = [{
-        label: 'Step 1',
-        description: 'Demo description',
-        status: 'completed'
-    }];
-    const onClick = jest.fn();
-    const {findByTestId} = render(<Stepper steps={steps} onStepClick={onClick} />)
-    const bubble = await findByTestId("stepper-bubble");
-    fireEvent.click(bubble);
-    expect(onClick).not.toBeCalled();
-})
-
-test("Stepper Component - On Click function with config", async () => {
+test("Stepper Component - On Click function", async () => {
     const steps: IStep[] = [{
         label: 'Step 1',
         description: 'Demo description',
@@ -67,7 +54,6 @@ test("Stepper Component - On Click function with config", async () => {
         <Stepper
             steps={steps}
             onStepClick={onClick}
-            enableStepClick={true}
         />
     )
     const bubble = await findByTestId("stepper-bubble");

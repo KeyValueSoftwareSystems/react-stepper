@@ -1,12 +1,12 @@
 import { ReactElement } from "react"
 import { LABEL_POSITION } from "../constants"
-export interface IStep {
+export type IStep = {
     label: string,
     description?: string,
     status: string
 }
 
-export interface IStepperProps {
+export type IStepperProps = {
     steps: IStep[],
     currentStepIndex?: number,
     onStepClick?(step: IStep, stepIndex: number): void,
@@ -17,7 +17,7 @@ export interface IStepperProps {
 
 export type IStyleFunction = (step: IStep, stepIndex: number) => object
 
-export interface IStylesOverride {
+export type IStylesOverride = {
     getLabelDescriptionStyles?: IStyleFunction,
     getLabelTitleStyles?: IStyleFunction,
     getActiveLabelDescriptionStyles?: IStyleFunction,
