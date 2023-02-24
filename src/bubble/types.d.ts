@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { IStep, IStyleFunction } from "../stepper-component/types";
 
-export interface IBubbleProps {
+export type IBubbleProps = {
     step: IStep,
     renderAdornment?(step: IStep, index: number): ReactElement,
     index: number,

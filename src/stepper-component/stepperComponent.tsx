@@ -1,13 +1,13 @@
 import React, { useState, useEffect, ReactElement, FC } from 'react';
 import classes from './styles.module.scss';
-import { IStep, IStepperProps } from './types';
+import type { IStep, IStepperProps } from './types';
 import Bubble from '../bubble';
 import { LABEL_POSITION } from '../constants';
 
 const Stepper: FC<IStepperProps> = (props) => {
   const {
     steps,
-    currentStepIndex,
+    currentStepIndex = 0,
     onStepClick,
     renderBubble,
     styles = {},
@@ -79,10 +79,10 @@ const Stepper: FC<IStepperProps> = (props) => {
             {stepIndex < steps?.length - 1 && (
               <div
                 className={`${classes.lineSeparator}
-                ${currentStepIndex && stepIndex > currentStepIndex - 1 && classes.inactiveStepLineSeparator}`}
+                ${stepIndex > currentStepIndex - 1 && classes.inactiveStepLineSeparator}`}
                 style={{
                   ...((getLineSeparatorStyles && getLineSeparatorStyles(step, stepIndex)) || {}),
-                  ...(( currentStepIndex && stepIndex > currentStepIndex - 1
+                  ...((stepIndex > currentStepIndex - 1
                   && getInactiveLineSeparatorStyles && getInactiveLineSeparatorStyles(step, stepIndex)) || {})
                 }}
               />

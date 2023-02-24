@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { IBubbleProps } from "./types";
+import type { IBubbleProps } from "./types";
 import whiteTick from '../assets/white-tick.svg';
 import { STEP_STATUSES } from '../constants';
 import styles from './styles.module.scss';
