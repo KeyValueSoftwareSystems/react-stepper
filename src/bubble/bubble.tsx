@@ -1,8 +1,10 @@
 import React, { FC } from "react";
 import type { IBubbleProps } from "./types";
+import { Elements } from "../constants";
 import whiteTick from '../assets/white-tick.svg';
 import { STEP_STATUSES } from '../constants';
 import styles from './styles.module.scss';
+
 const Bubble: FC<IBubbleProps> = (props) => {
   const {
     step,
@@ -10,10 +12,9 @@ const Bubble: FC<IBubbleProps> = (props) => {
     index,
     currentStepIndex,
     handleStepClick = null,
-    getBubbleStyles,
-    getActiveBubbleStyles,
-    getInActiveBubbleStyles
+    getStyles
   } = props;
+
   return (
     <div
       className={`${styles.eachBubble}
@@ -22,10 +23,10 @@ const Bubble: FC<IBubbleProps> = (props) => {
       ${step.status === STEP_STATUSES.UNVISITED && currentStepIndex !== index && styles.inactiveStepBubble}
       `}
       style={{
-        ...((getBubbleStyles && getBubbleStyles(step, index)) || {}),
-        ...((index === currentStepIndex && getActiveBubbleStyles && getActiveBubbleStyles(step, index)) || {}),
+        ...((getStyles(Elements.Bubble)) || {}),
+        ...((index === currentStepIndex && getStyles(Elements.ActiveBubble)) || {}),
         ...((step.status === STEP_STATUSES.UNVISITED && currentStepIndex !== index
-            && getInActiveBubbleStyles && getInActiveBubbleStyles(step, index)) || {})
+            && getStyles(Elements.InActiveBubble)) || {})
       }}
       onClick={(): void | null => handleStepClick && handleStepClick()}
       role="presentation"

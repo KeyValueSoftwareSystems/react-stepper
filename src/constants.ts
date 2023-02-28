@@ -8,3 +8,15 @@ export enum LABEL_POSITION {
    LEFT = 'left',
    RIGHT = 'right'
 }
+
+export enum Elements {
+   LabelDescription = "LabelDescription",
+   LabelTitle = "LabelTitle",
+   ActiveLabelTitle = "ActiveLabelTitle",
+   ActiveLabelDescription = "ActiveLabelDescription",
+   LineSeparator = "LineSeparator",
+   InactiveLineSeparator = "InactiveLineSeparator",
+   Bubble = "Bubble",
+   ActiveBubble = "ActiveBubble",
+   InActiveBubble = "InActiveBubble"
+ }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Stepper from '../stepper-component';
+import { IStep } from '../stepper-component/types';
 
 export default {
     title: 'Example/Stepper',
@@ -34,6 +35,17 @@ VerticalStepper.args = {
   }],
   currentStepIndex: 2,
   // onStepClick: (stepIndex: number) => console.log("🚀 ~ file: StepperComponent.stories.tsx:37 ~ stepIndex", stepIndex)
-  // renderAdornment: (step, index) => {},
-  // labelPosition: 'right'
+  // renderBubble: (step, index) => (<></>),
+  // labelPosition: 'right',
+  // styles: {
+  //   Bubble: () => ({ background: 'yellow'}),
+  //   LineSeparator: (step: IStep, index: number) => (index === 2 ? { borderRight: '1px solid red' } : {}),
+  //   InactiveLineSeparator: (step: IStep, index: number) => (index === 2 ? { borderRight: '1px dashed red' } : {}),
+  //   LabelTitle: () => ({ background: 'red'}),
+  //   ActiveLabelTitle: () => ({ background: 'green'}),
+  //   LabelDescription: () => ({ background: 'red'}),
+  //   ActiveLabelDescription: () => ({ background: 'green'}),
+  //   ActiveBubble: () => ({ background: 'orange'}),
+  //   InActiveBubble: () => ({ background: 'grey'})
+  // }
 };
