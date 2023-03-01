@@ -159,8 +159,6 @@ the below code shows all the overridable styles:
 />
 ```
 
-> All the `getXXStyles` functions can be passed optionally using `styles` prop and can be used to override specific css styles to the respective elements.
-
 -  `LabelTitle` - overrides the step label style
 -  `ActiveLabelTitle` - overrides the step label style of current active step
 -  `LabelDescription` - overrides the step description style
