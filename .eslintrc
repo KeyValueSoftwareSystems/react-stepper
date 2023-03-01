@@ -1,5 +1,5 @@
 {
-  "ignorePatterns": ["**/*.d.ts", "node_modules/", "src/stories", "src/tests"],
+  "ignorePatterns": ["**/*.d.ts", "node_modules/", "src/stories", "src/tests", "webpack.config.js"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
