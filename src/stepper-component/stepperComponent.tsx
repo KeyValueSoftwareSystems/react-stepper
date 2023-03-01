@@ -32,6 +32,7 @@ const Stepper: FC<IStepperProps> = (props) => {
               index={stepIndex}
               currentStepIndex= {currentStepIndex}
               handleStepClick={(): void => onStepClick && onStepClick(step, stepIndex)}
+              showCursor={!!onStepClick}
               renderAdornment={renderBubble}
               getStyles={(element: Elements): object => getStyles(element, step, stepIndex)}
             />

@@ -8,5 +8,6 @@ export type IBubbleProps = {
   index: number,
   currentStepIndex?: number,
   handleStepClick(): void,
+  showCursor: boolean,
   getStyles(element: Elements): object
 }

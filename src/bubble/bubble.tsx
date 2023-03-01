@@ -12,13 +12,14 @@ const Bubble: FC<IBubbleProps> = (props) => {
     index,
     currentStepIndex,
     handleStepClick = null,
+    showCursor,
     getStyles
   } = props;
 
   return (
     <div
       className={`${styles.eachBubble}
-      ${handleStepClick && styles.cursorPointer}
+      ${showCursor && styles.cursorPointer}
       ${index === currentStepIndex && styles.activeStepBubble}
       ${step.status === STEP_STATUSES.UNVISITED && currentStepIndex !== index && styles.inactiveStepBubble}
       `}
