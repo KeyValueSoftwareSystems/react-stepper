@@ -1,0 +1,107 @@
+name: Update version and Publish Package
+
+on:
+  workflow_dispatch:
+    inputs:
+      ReleaseType:
+        description: 'Release Type'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - Major
+        - Feature
+        - Bug
+
+jobs:
+  update-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Build Package
+        run: npm run build
+
+      - name: 'Set release type : ${{ inputs.ReleaseType }}'
+        id: release_type
+        uses: ASzc/change-string-case-action@v5
+        with:
+          string: ${{ inputs.ReleaseType }}
+
+      - name: Extract Current Branch and Validate
+        id: get_current_branch
+        shell: bash
+        run: |
+          BRANCH="${GITHUB_REF#refs/heads/}"
+          if [ "$BRANCH" == 'main' ]
+            then
+              echo "Branch validation Successful"
+            else
+              echo "Releases only taken from main branch"
+              exit 1
+          fi
+
+      - name: Get Latest version from package.json
+        run: |
+          # Get the latest version from package.json
+          LATEST_VERSION=$(node -p "require('./package.json').version")
+
+          # Output the latest version as a workflow env
+          echo "latest_version=$LATEST_VERSION" >> $GITHUB_ENV
+
+      - name: Get new version
+        id: get_next_version
+        uses: christian-draeger/increment-semantic-version@1.0.3
+        with:
+          current-version: ${{ env.latest_version }}
+          version-fragment: ${{ steps.release_type.outputs.lowercase }}
+
+      - name: Update version in package.json and package-lock.json
+        run: |
+          OLD_VERSION=${{ env.latest_version }}
+          NEW_VERSION=${{ steps.get_next_version.outputs.next-version }}
+
+          npm version $NEW_VERSION --no-git-tag-version
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add package.json package-lock.json
+          git commit -m "Bump version from $OLD_VERSION to $NEW_VERSION"
+          git push origin HEAD:main
+
+      - name: Publish package
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_AUTH_TOKEN }}
+        if: success()
+
+      - name: Revert package.json and package-lock.json
+        run: |
+          # Revert package.json and package-lock.json to the previous version
+          npm version ${{ env.latest_version }} --no-git-tag-version
+          git commit -am "Revert to version ${{ env.latest_version }}"
+          git push origin HEAD:main
+        if: failure()
+
+      - name: Create GitHub release
+        if: success()
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.get_next_version.outputs.next-version }}
+          release_name: Release v${{ steps.get_next_version.outputs.next-version }}
+          # body: Release ${{ env.NEW_VERSION }}
+          draft: false
+          prerelease: false
