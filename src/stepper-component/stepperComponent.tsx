@@ -1,6 +1,6 @@
 import React, { ReactElement, FC } from 'react';
 import classes from './styles.module.scss';
-import { IStep, IStepperProps } from './types';
+import type { IStep, IStepperProps } from './types';
 import Bubble from '../bubble';
 import { LABEL_POSITION, Elements } from '../constants';
 
