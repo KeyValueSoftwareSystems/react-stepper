@@ -1,5 +1,7 @@
 import { ReactElement } from "react"
 import { LABEL_POSITION } from "../constants"
+import { Elements } from "../constants"
+
 export type IStep = {
     label: string,
     description?: string,
@@ -11,20 +13,8 @@ export type IStepperProps = {
     currentStepIndex?: number,
     onStepClick?(step: IStep, stepIndex: number): void,
     renderBubble?(step: IStep, stepIndex: number): ReactElement,
-    styles?: IStylesOverride,
+    styles?: { [key in Elements]: IStyleFunction },
     labelPosition?: LABEL_POSITION.LEFT | LABEL_POSITION.RIGHT
 }
 
 export type IStyleFunction = (step: IStep, stepIndex: number) => object
-
-export type IStylesOverride = {
-    getLabelDescriptionStyles?: IStyleFunction,
-    getLabelTitleStyles?: IStyleFunction,
-    getActiveLabelDescriptionStyles?: IStyleFunction,
-    getActiveLabelTitleStyles?: IStyleFunction,
-    getLineSeparatorStyles?: IStyleFunction,
-    getInactiveLineSeparatorStyles?: IStyleFunction,
-    getBubbleStyles?: IStyleFunction,
-    getActiveBubbleStyles?: IStyleFunction,
-    getInActiveBubbleStyles?: IStyleFunction,
-}

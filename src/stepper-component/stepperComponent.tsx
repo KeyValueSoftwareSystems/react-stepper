@@ -1,8 +1,8 @@
-import React, { useState, useEffect, ReactElement, FC } from 'react';
+import React, { ReactElement, FC } from 'react';
 import classes from './styles.module.scss';
 import type { IStep, IStepperProps } from './types';
 import Bubble from '../bubble';
-import { LABEL_POSITION } from '../constants';
+import { LABEL_POSITION, Elements } from '../constants';
 
 const Stepper: FC<IStepperProps> = (props) => {
   const {
@@ -14,17 +14,13 @@ const Stepper: FC<IStepperProps> = (props) => {
     labelPosition = LABEL_POSITION.RIGHT
   } = props;
 
-  const {
-    getLabelDescriptionStyles,
-    getLabelTitleStyles,
-    getActiveLabelTitleStyles,
-    getActiveLabelDescriptionStyles,
-    getLineSeparatorStyles,
-    getInactiveLineSeparatorStyles,
-    getBubbleStyles,
-    getActiveBubbleStyles,
-    getInActiveBubbleStyles
-  } = styles;
+  const getStyles = (element: Elements, step: IStep, index: number): object => {
+    const getElementStyle = styles[element];
+    if (getElementStyle) {
+      return getElementStyle(step, index);
+    }
+    return {};
+  };
 
   return (
     <div className={classes.stepperContainer}>
@@ -36,10 +32,9 @@ const Stepper: FC<IStepperProps> = (props) => {
               index={stepIndex}
               currentStepIndex= {currentStepIndex}
               handleStepClick={(): void => onStepClick && onStepClick(step, stepIndex)}
+              showCursor={!!onStepClick}
               renderAdornment={renderBubble}
-              getBubbleStyles={getBubbleStyles}
-              getActiveBubbleStyles={getActiveBubbleStyles}
-              getInActiveBubbleStyles={getInActiveBubbleStyles}
+              getStyles={(element: Elements): object => getStyles(element, step, stepIndex)}
             />
             <div className={`${classes.labelContainer} ${classes[`labelContainer__${labelPosition || LABEL_POSITION.RIGHT}`]}`}>
               {step?.label && (
@@ -48,8 +43,8 @@ const Stepper: FC<IStepperProps> = (props) => {
                   ${onStepClick && classes.cursorPointer}
                   ${stepIndex === currentStepIndex && classes.activeLabelTitle}`}
                   style={{
-                    ...((getLabelTitleStyles && getLabelTitleStyles(step, stepIndex)) || {}),
-                    ...((stepIndex === currentStepIndex && getActiveLabelTitleStyles && getActiveLabelTitleStyles(step, stepIndex)) || {})
+                    ...((getStyles(Elements.LabelTitle, step, stepIndex)) || {}),
+                    ...((stepIndex === currentStepIndex && getStyles(Elements.ActiveLabelTitle, step, stepIndex)) || {})
                   }}
                   onClick={(): void => onStepClick && onStepClick(step, stepIndex)}
                   role="presentation"
@@ -64,9 +59,9 @@ const Stepper: FC<IStepperProps> = (props) => {
                   ${onStepClick && classes.cursorPointer}
                   ${stepIndex === currentStepIndex && classes.activeLabelDescription}`}
                   style={{
-                    ...((getLabelDescriptionStyles && getLabelDescriptionStyles(step, stepIndex)) || {}),
+                    ...((getStyles(Elements.LabelDescription, step, stepIndex)) || {}),
                     ...((stepIndex === currentStepIndex &&
-                      getActiveLabelDescriptionStyles && getActiveLabelDescriptionStyles(step, stepIndex)) || {})
+                      getStyles(Elements.ActiveLabelDescription, step, stepIndex)) || {})
                   }}
                   onClick={(): void => onStepClick && onStepClick(step, stepIndex)}
                   role="presentation"
@@ -81,9 +76,9 @@ const Stepper: FC<IStepperProps> = (props) => {
                 className={`${classes.lineSeparator}
                 ${stepIndex > currentStepIndex - 1 && classes.inactiveStepLineSeparator}`}
                 style={{
-                  ...((getLineSeparatorStyles && getLineSeparatorStyles(step, stepIndex)) || {}),
+                  ...((getStyles(Elements.LineSeparator, step, stepIndex)) || {}),
                   ...((stepIndex > currentStepIndex - 1
-                  && getInactiveLineSeparatorStyles && getInactiveLineSeparatorStyles(step, stepIndex)) || {})
+                  && getStyles(Elements.InactiveLineSeparator, step, stepIndex)) || {})
                 }}
               />
             )}

@@ -9,7 +9,6 @@
     "start": "webpack watch && tsc",
     "build": "webpack && tsc",
     "eslint": "eslint src",
-    "build:demo": "webpack --config webpack.config.demo.js",
     "test": "jest --config ./jest.config.js",
     "coverage": "npm run test -- --coverage",
     "trypublish": "npm publish || true",
@@ -19,14 +18,13 @@
   "engines": {
     "node": ">=10"
   },
-  "appRoot": "src",
   "repository": {
     "type": "github",
-    "url": "https://github.com/aarathyKeyvalue/vertical-stepper"
+    "url": "https://github.com/KeyValueSoftwareSystems/react-vertical-stepper"
   },
   "author": "Keyvalue",
   "license": "",
-  "homepage": "https://github.com/aarathyKeyvalue/vertical-stepper",
+  "homepage": "https://github.com/KeyValueSoftwareSystems/react-vertical-stepper",
   "keywords": [
     "library",
     "starter",
