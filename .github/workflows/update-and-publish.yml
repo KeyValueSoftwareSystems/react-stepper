@@ -31,9 +31,6 @@ jobs:
       - name: Run tests
         run: npm run test
 
-      - name: Build Package
-        run: npm run build
-
       - name: 'Set release type : ${{ inputs.ReleaseType }}'
         id: release_type
         uses: ASzc/change-string-case-action@v5
@@ -80,11 +77,13 @@ jobs:
           git commit -m "Bump version from $OLD_VERSION to $NEW_VERSION"
           git push origin HEAD:main
 
+      - name: Build Package
+        run: npm run build
+
       - name: Publish package
         uses: JS-DevTools/npm-publish@v1
         with:
           access: 'public'
-          dry-run: false
           check-version: true
           token: ${{ secrets.NPM_AUTH_TOKEN }}
         if: success()
