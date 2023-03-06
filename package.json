@@ -1,5 +1,5 @@
 {
-  "name": "vertical-stepper",
+  "name": "@kv/react-vertical-stepper",
   "version": "0.1.0",
   "description": "Vertical Stepper Component",
   "main": "build/index.js",
