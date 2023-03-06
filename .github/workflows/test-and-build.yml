@@ -1,25 +1,32 @@
-name: Test and Build
+name: Test Suite
 
 on:
-  workflow_dispatch:
+    push:
+      branches: [main]
+    pull_request:
+      # The branches below must be a subset of the branches above
+      branches: [main]
 
 jobs:
   test-and-build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x, 14.x]
+        node-version: [16.x]
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
+          ref: ${{ if github.event_name == 'pull_request' }}${{ github.event.pull_request.head.sha }}${{ else }}${{ github.ref }}${{ endif }}
           fetch-depth: 0
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
+
+      - name: Linting
+        run: npm run eslint
 
       - name: Install dependencies
         run: npm install
