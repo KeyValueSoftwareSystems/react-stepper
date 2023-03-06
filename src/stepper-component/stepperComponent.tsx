@@ -25,7 +25,7 @@ const Stepper: FC<IStepperProps> = (props) => {
   return (
     <div className={classes.stepperContainer}>
       {steps?.map((step: IStep, stepIndex: number): ReactElement => (
-        <div key={stepIndex} className={classes.eachStep} data-testId="stepper-steps">
+        <div key={stepIndex} className={classes.eachStep} id="stepper-steps">
           <div className={classes.bubbleLineWrapper}>
             <Bubble
               step={step}
@@ -48,7 +48,7 @@ const Stepper: FC<IStepperProps> = (props) => {
                   }}
                   onClick={(): void => onStepClick && onStepClick(step, stepIndex)}
                   role="presentation"
-                  data-testId={`stepper-label-${stepIndex}`}
+                  id={`stepper-label-${stepIndex}`}
                 >
                   {step.label}
                 </span>
@@ -65,7 +65,7 @@ const Stepper: FC<IStepperProps> = (props) => {
                   }}
                   onClick={(): void => onStepClick && onStepClick(step, stepIndex)}
                   role="presentation"
-                  data-testId={`stepper-desc-${stepIndex}`}
+                  id={`stepper-desc-${stepIndex}`}
                 >
                   {step.description}
                 </span>
