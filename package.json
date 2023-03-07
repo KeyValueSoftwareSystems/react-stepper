@@ -1,7 +1,7 @@
 {
-  "name": "vertical-stepper",
-  "version": "0.1.0",
-  "description": "Vertical Stepper Component",
+  "name": "react-vertical-stepper",
+  "version": "0.1.1",
+  "description": "A fully customizable vertical stepper component",
   "main": "build/index.js",
   "source": "src/index.tsx",
   "types": "build/types/index.d.ts",
