@@ -2,7 +2,9 @@
 # React Vertical Stepper
 <a href="https://www.npmjs.com/package/react-vertical-stepper"><img src="https://badgen.net/npm/v/react-vertical-stepper?color=blue" alt="npm version"></a> <a href="https://www.npmjs.com/package/react-vertical-stepper" ><img src="https://img.shields.io/npm/dw/react-vertical-stepper?label=Downloads" /></a> <a href="https://github.com/KeyValueSoftwareSystems/react-vertical-stepper"><img src="https://github.com/KeyValueSoftwareSystems/react-vertical-stepper/actions/workflows/update-and-publish.yml/badge.svg" alt="" /></a>
 
-![image](./src/assets/vertical-stepper-example.png)
+<div align="center">
+<img src="./src/assets/vertical-stepper-example.png" alt="" width="269" height="416"/>
+</div>
 
 A fully customizable ready to use vertical stepper UI package for React.
 Try tweaking a vertical stepper using this codesandbox link <a href="https://codesandbox.io/s/vertical-stepper-demo-x24q7u" >here</a>
