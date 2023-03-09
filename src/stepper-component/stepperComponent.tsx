@@ -35,42 +35,8 @@ const Stepper: FC<IStepperProps> = (props) => {
               showCursor={!!onStepClick}
               renderAdornment={renderBubble}
               getStyles={(element: Elements): object => getStyles(element, step, stepIndex)}
+              labelPosition={labelPosition}
             />
-            <div className={`${classes.labelContainer} ${classes[`labelContainer__${labelPosition || LABEL_POSITION.RIGHT}`]}`}>
-              {step?.label && (
-                <span
-                  className={`${classes.labelTitle}
-                  ${onStepClick && classes.cursorPointer}
-                  ${stepIndex === currentStepIndex && classes.activeLabelTitle}`}
-                  style={{
-                    ...((getStyles(Elements.LabelTitle, step, stepIndex)) || {}),
-                    ...((stepIndex === currentStepIndex && getStyles(Elements.ActiveLabelTitle, step, stepIndex)) || {})
-                  }}
-                  onClick={(): void => onStepClick && onStepClick(step, stepIndex)}
-                  role="presentation"
-                  id={`stepper-label-${stepIndex}`}
-                >
-                  {step.label}
-                </span>
-              )}
-              {step?.description && (
-                <span
-                  className={`${classes.labelDescription}
-                  ${onStepClick && classes.cursorPointer}
-                  ${stepIndex === currentStepIndex && classes.activeLabelDescription}`}
-                  style={{
-                    ...((getStyles(Elements.LabelDescription, step, stepIndex)) || {}),
-                    ...((stepIndex === currentStepIndex &&
-                      getStyles(Elements.ActiveLabelDescription, step, stepIndex)) || {})
-                  }}
-                  onClick={(): void => onStepClick && onStepClick(step, stepIndex)}
-                  role="presentation"
-                  id={`stepper-desc-${stepIndex}`}
-                >
-                  {step.description}
-                </span>
-              )}
-            </div>
             {stepIndex < steps?.length - 1 && (
               <div
                 className={`${classes.lineSeparator}
