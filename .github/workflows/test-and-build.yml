@@ -1,10 +1,7 @@
 name: Test Suite
 
 on:
-    push:
-      branches: [main]
     pull_request:
-      # The branches below must be a subset of the branches above
       branches: [main]
 
 jobs:
@@ -17,7 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
         with:
-          ref: ${{ if github.event_name == 'pull_request' }}${{ github.event.pull_request.head.sha }}${{ else }}${{ github.ref }}${{ endif }}
+          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
 
       - name: Use Node.js ${{ matrix.node-version }}
@@ -25,11 +22,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Linting
-        run: npm run eslint
-
       - name: Install dependencies
         run: npm install
+
+      - name: Linting
+        run: npm run eslint
 
       - name: Run tests
         run: npm run test

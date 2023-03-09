@@ -9,5 +9,6 @@ export type IBubbleProps = {
   currentStepIndex?: number,
   handleStepClick(): void,
   showCursor: boolean,
-  getStyles(element: Elements): object
+  getStyles(element: Elements): object,
+  labelPosition: 'left' | 'right'
 }

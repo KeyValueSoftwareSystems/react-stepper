@@ -15,37 +15,6 @@
       flex-direction: column;
       align-items: center;
       width: fit-content;
-      .labelContainer {
-        position: absolute;
-        width: max-content;
-        height: fit-content;
-        display: flex;
-        flex-direction: column;
-        &__right {
-          top: 4px;
-          left: 44px;
-        }
-        &__left {
-          top: 4px;
-          right: 44px;
-          align-items: end;
-        }
-        .labelTitle {
-          color: #4F4F4F;
-        }
-        .activeLabelTitle {
-          font-weight: 700;
-        }
-        .labelDescription {
-          font-weight: 400;
-          font-size: 12px;
-          line-height: 21px;
-          color: #929292;
-        }
-        .activeLabelDescription {
-          color: #676767;
-        }
-      }
       .lineSeparator {
         height: 22px;
         width: 1px;
