@@ -1,14 +1,15 @@
 
 # React Vertical Stepper
+<a href="https://www.npmjs.com/package/react-vertical-stepper"><img src="https://badgen.net/npm/v/react-vertical-stepper?color=blue" alt="npm version"></a> <a href="https://www.npmjs.com/package/react-vertical-stepper" ><img src="https://img.shields.io/npm/dw/react-vertical-stepper?label=Downloads" /></a> <a href="https://github.com/KeyValueSoftwareSystems/react-vertical-stepper"><img src="https://github.com/KeyValueSoftwareSystems/react-vertical-stepper/actions/workflows/update-and-publish.yml/badge.svg" alt="" /></a>
 
-<!--
-<a href="https://www.npmjs.com/package/@hodgef/ts-library-boilerplate-basic"><img src="https://badgen.net/npm/v/@hodgef/ts-library-boilerplate-basic?color=blue" alt="npm version"></a> <a href="https://github.com/hodgef/ts-library-boilerplate"><img src="https://img.shields.io/github/last-commit/hodgef/ts-library-boilerplate" alt="latest commit"></a> <a href="https://github.com/hodgef/ts-library-boilerplate-basic/actions"><img alt="Build Status" src="https://github.com/hodgef/ts-library-boilerplate-basic/workflows/Build/badge.svg?color=green" /></a> <a href="https://github.com/hodgef/ts-library-boilerplate-basic/actions"> <img alt="Publish Status" src="https://github.com/hodgef/ts-library-boilerplate-basic/workflows/Publish/badge.svg?color=green" /></a> -->
+![image](./src/assets/vertical-stepper-example.png)
 
->A fully customizable ready to use vertical stepper UI package.
+A fully customizable ready to use vertical stepper UI package for React.
+Try tweaking a vertical stepper using this codesandbox link <a href="https://codesandbox.io/s/vertical-stepper-demo-x24q7u" >here</a>
 
 ## Installation
 
-```
+```bash
 npm install react-vertical-stepper
 ```
 
@@ -17,67 +18,56 @@ You’ll need to install React separately since it isn't included in the package
 ## Usage
 
 React Vertical Stepper can run in a very basic mode by just providing the `steps` and `currentStepIndex` props like this:
-```
+
+```jsx
+import  React,  {  useState  }  from  'react';
 import Stepper from 'react-vertical-stepper';
 
-<Stepper
-  steps={stepsArray}
-  currentStepIndex={currentStepIndex}
-/>
+function  App()  {
+  const [currentStepIndex, setCurrentStepIndex] = useState(0);
+  
+  stepsArray = [{
+      label: 'Step 1',
+      description: 'This is Step 1',
+      status: 'completed'
+    },{
+      label: 'Step 2',
+      description: 'This is Step 2',
+      status: 'visited'
+    },{
+      label: 'Step 3',
+      description: 'This is Step 3',
+      status: 'unvisited'
+  }];
+
+  return (
+    <Stepper
+      steps={stepsArray}
+      currentStepIndex={currentStepIndex}
+    />
+  );
+}
+
+export default App;
 ```
-Here the steps array is an array of objects with basic keys like
+The `steps` array is an array of objects with basic keys like
 
 -  `label` - a string that can be shown as step label title to your step indicator
 -  `description` - a string that can be show as step description below the step label
 -  `status` - can be provided with any of `visited`, `unvisited`, `completed`. Will be required if you are using default styles.
 
-> You can also add other keys to the step object and other statuses like `skipped` for different customizations as per requirements
+>Note:  You can also add any other keys to the step object and other statuses like `skipped` for different customizations as per requirements
 
-An example for steps array is shown below:
+You can customize the step indicator bubble with your own DOM element using the `renderBubble` prop
 
-```
-stepsArray = [
-  {
-    label: 'Step 1',
-    description: 'This is Step 1',
-    status: 'visited'
-  },
-  {
-    label: 'Step 2',
-    description: 'This is Step 2',
-    status: 'unvisited'
-  },
-  {
-    label: 'Step 3',
-    description: 'This is Step 3',
-    status: 'completed'
-  }
-];
-```
-You can use `onStepClick` event handler which fires each time you click on a step or its label or description
-```
-const [activeStepIndex, setActiveStepIndex] = useState(0);
-
-const handleStepClick = (step, stepIndex) => {
-  setActiveStepIndex(stepIndex);
-};
-
-<Stepper
-  steps={stepsArray}
-  currentStepIndex={activeStepIndex}
-  onStepClick={handleStepClick}
-/>
-```
-You can also customize the step indicator bubble with your own DOM element using the `renderBubble` prop
-```
+```jsx
 <Stepper
   steps={stepsArray}
   currentStepIndex={currentStepIndex}
   renderBubble={(step, stepIndex) => (<div key={stepIndex}>{step.label}</div>)}
 />
 ```
-
->Note: The `step` param provided by the `renderBubble` callback is the same object you pass as array item in `steps` prop.
+The `step` param provided by the `renderBubble` callback is the same object you pass as array item in `steps` prop.
 
 ## Props
 
@@ -94,17 +84,13 @@ Props that can be passed to the component are listed below:
   <tbody>
     <tr>
       <td><code><b>steps:</b> object[]</code></td>
-      <td>
-        An array of step objects to render.
-      </td>
+      <td>An array of step objects to render.</td>
       <td><code>undefined</code></td>
     </tr>
     <tr>
       <td><code><b>currentIndex:</b> number</code></td>
-      <td>
-        The index of current active step.
-      </td>
-      <td>0</td>
+      <td>The index of current active step.</td>
+      <td><code>0</code></td>
     </tr>
     <tr>
       <td><code><b>onStepClick?:</b> (step: object, stepIndex: number): void</code></td>
@@ -139,26 +125,38 @@ Props that can be passed to the component are listed below:
 
 ## Style Customizations
 
-All the default styles provided by this package are overridable using the `style` prop.
+All the default styles provided by this package are overridable using the `style` prop
 the below code shows all the overridable styles:
-```
-<Stepper
-  steps={stepsArray}
-  currentStepIndex={currentStepIndex}
-  styles={{
-    LabelTitle: (step, stepIndex) => ({...styles}),
-    ActiveLabelTitle: (step, stepIndex) => ({...styles}),
-    LabelDescription: (step, stepIndex) => ({...styles}),
-    ActiveLabelDescription: (step, stepIndex) => ({...styles}),
-    LineSeparator: (step, stepIndex) => ({...styles}),
-    InactiveLineSeparator: (step, stepIndex) => ({...styles}),
-    Bubble: (step, stepIndex) => ({...styles}),
-    ActiveBubble: (step, stepIndex) => ({...styles}),
-    InActiveBubble: (step, stepIndex) => ({...styles}),
-  }}
-/>
-```
 
+```jsx
+import React from 'react';
+import Stepper from 'react-vertical-stepper';
+
+function App() {
+
+ const stylesOverrride = {
+   LabelTitle: (step, stepIndex) => ({...styles}),
+   ActiveLabelTitle: (step, stepIndex) => ({...styles}),
+   LabelDescription: (step, stepIndex) => ({...styles}),
+   ActiveLabelDescription: (step, stepIndex) => ({...styles}),
+   LineSeparator: (step, stepIndex) => ({...styles}),
+   InactiveLineSeparator: (step, stepIndex) => ({...styles}),
+   Bubble: (step, stepIndex) => ({...styles}),
+   ActiveBubble: (step, stepIndex) => ({...styles}),
+   InActiveBubble: (step, stepIndex) => ({...styles}),
+ };
+ return (
+   <Stepper
+     steps={stepsArray}
+	 currentStepIndex={currentStepIndex}
+	 styles={stylesOverrride}
+   />
+ );
+}
+
+export default App;
+```
+  
 -  `LabelTitle` - overrides the step label style
 -  `ActiveLabelTitle` - overrides the step label style of current active step
 -  `LabelDescription` - overrides the step description style
