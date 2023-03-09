@@ -22,11 +22,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Linting
-        run: npm run eslint
-
       - name: Install dependencies
         run: npm install
+
+      - name: Linting
+        run: npm run eslint
 
       - name: Run tests
         run: npm run test
