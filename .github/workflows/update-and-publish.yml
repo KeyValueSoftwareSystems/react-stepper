@@ -81,11 +81,9 @@ jobs:
         run: npm run build
 
       - name: Publish package
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          access: 'public'
-          check-version: true
-          token: ${{ secrets.NPM_AUTH_TOKEN }}
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
         if: success()
 
       - name: Revert package.json and package-lock.json
