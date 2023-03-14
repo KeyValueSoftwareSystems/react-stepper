@@ -150,8 +150,8 @@ function App() {
  return (
    <Stepper
      steps={stepsArray}
-	 currentStepIndex={currentStepIndex}
-	 styles={stylesOverrride}
+	  currentStepIndex={currentStepIndex}
+	  styles={stylesOverrride}
    />
  );
 }

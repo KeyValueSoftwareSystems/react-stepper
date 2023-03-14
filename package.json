@@ -1,5 +1,5 @@
 {
-  "name": "@keyvaluesystems/react-vertical-stepper",
+  "name": "@kv/react-vertical-stepper",
   "version": "0.1.2",
   "description": "A fully customizable vertical stepper component",
   "main": "build/index.js",

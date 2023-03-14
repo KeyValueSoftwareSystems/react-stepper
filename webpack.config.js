@@ -34,6 +34,9 @@ module.exports = {
     libraryTarget: 'umd',
     clean: true
   },
+  externals: {
+    react: 'react'
+  },
   optimization: {
     minimize: true,
     minimizer: [
