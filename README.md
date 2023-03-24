@@ -136,7 +136,7 @@ import Stepper from 'react-vertical-stepper';
 
 function App() {
 
- const stylesOverrride = {
+ const stylesOverride = {
    LabelTitle: (step, stepIndex) => ({...styles}),
    ActiveLabelTitle: (step, stepIndex) => ({...styles}),
    LabelDescription: (step, stepIndex) => ({...styles}),
@@ -149,9 +149,9 @@ function App() {
  };
  return (
    <Stepper
-     steps={stepsArray}
-	  currentStepIndex={currentStepIndex}
-	  styles={stylesOverrride}
+    steps={stepsArray}
+    currentStepIndex={currentStepIndex}
+    styles={stylesOverride}
    />
  );
 }
