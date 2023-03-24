@@ -149,9 +149,9 @@ function App() {
  };
  return (
    <Stepper
-    steps={stepsArray}
-    currentStepIndex={currentStepIndex}
-    styles={stylesOverride}
+      steps={stepsArray}
+      currentStepIndex={currentStepIndex}
+      styles={stylesOverride}
    />
  );
 }
