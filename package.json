@@ -25,10 +25,8 @@
   "author": "Keyvalue",
   "license": "ISC",
   "homepage": "https://github.com/KeyValueSoftwareSystems/react-vertical-stepper",
-  "keywords": [
-    "library",
-    "starter",
-    "es6"
+  "keywords": ["library", "starter", "es6", "react", "typescript", "webpack",
+    "steps", "stepper", "vertical-stepper", " steps-ui", "workflow-stepper", "progress-ui"
   ],
   "devDependencies": {
     "@babel/cli": "^7.20.7",
