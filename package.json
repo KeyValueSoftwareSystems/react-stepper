@@ -1,6 +1,6 @@
 {
   "name": "@keyvaluesystems/react-vertical-stepper",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "A fully customizable vertical stepper component",
   "main": "build/index.js",
   "source": "src/index.tsx",
@@ -25,8 +25,19 @@
   "author": "Keyvalue",
   "license": "ISC",
   "homepage": "https://github.com/KeyValueSoftwareSystems/react-vertical-stepper",
-  "keywords": ["library", "starter", "es6", "react", "typescript", "webpack",
-    "steps", "stepper", "vertical-stepper", " steps-ui", "workflow-stepper", "progress-ui"
+  "keywords": [
+    "library",
+    "starter",
+    "es6",
+    "react",
+    "typescript",
+    "webpack",
+    "steps",
+    "stepper",
+    "vertical-stepper",
+    " steps-ui",
+    "workflow-stepper",
+    "progress-ui"
   ],
   "devDependencies": {
     "@babel/cli": "^7.20.7",
