@@ -1,3 +1,3 @@
-import Stepper from "./stepper-component";
+import Stepper from "./stepper";
 
 export default Stepper;

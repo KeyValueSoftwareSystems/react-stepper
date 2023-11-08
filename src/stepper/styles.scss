@@ -1,0 +1,115 @@
+$grey-color: #e1e1e1;
+$active-color: #47aed6;
+$completed-color: #47aed6;
+
+.stepperContainer {
+  margin: 0;
+  padding: 1em;
+  display: flex;
+  flex-flow: row nowrap;
+  font-family: inherit;
+  list-style: none;
+  align-items: center;
+
+  .step {
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    width: fit-content;
+    gap: 0.5em;
+
+    .bubble {
+      width: 2em;
+      height: 2em;
+      border: 2px solid $grey-color;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      padding: 0em;
+
+      color: darken($color: $grey-color, $amount: 50);
+    }
+
+    .activeConnector {
+      background-color: $completed-color;
+    }
+
+    .stepInfo {
+      .label {
+        font-size: 0.9em;
+      }
+
+      .description {
+        font-size: 0.8em;
+        color: grey;
+      }
+    }
+  }
+
+  .text-right {
+    flex-direction: row;
+  }
+
+  .text-left {
+    flex-direction: row-reverse;
+  }
+
+  .activeStep {
+    .bubble {
+      border: 2px solid $completed-color;
+    }
+  }
+
+  .completedStep {
+    .bubble {
+      background-color: $completed-color;
+      color: #fff;
+      border: 2px solid $completed-color;
+    }
+  }
+
+  // display: flex;
+  // width: 100%;
+  // height: 100%;
+  // flex-direction: column;
+  // margin-left: 10px;
+  // align-items: center;
+  // .eachStep {
+  //   display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  //   position: relative;
+  //   .bubbleLineWrapper {
+  //     display: flex;
+  //     flex-direction: column;
+  //     align-items: center;
+  //     width: fit-content;
+  //     .lineSeparator {
+  //       height: 22px;
+  //       width: 1px;
+  //       border-right: 2px solid #dfdff2;
+  //       margin: 4px 0;
+  //     }
+  //     .inactiveStepLineSeparator {
+  //       border-right: 2px dashed #dfdff2;
+  //     }
+  //   }
+  // }
+
+  .stepConnector {
+    margin: 0.5em;
+    width: 100px;
+    flex: 1;
+    height: 2px;
+    background-color: $grey-color;
+  }
+  .activeConnector {
+    background-color: $completed-color;
+  }
+}
+.cursorPointer {
+  cursor: pointer;
+}
