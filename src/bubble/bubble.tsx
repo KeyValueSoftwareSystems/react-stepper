@@ -14,7 +14,6 @@ const Bubble: FC<IBubbleProps> = (props) => {
     handleStepClick = null,
     showCursor,
     getStyles,
-    labelPosition
   } = props;
 
   return (
@@ -23,6 +22,7 @@ const Bubble: FC<IBubbleProps> = (props) => {
       ${showCursor && styles.cursorPointer}
       ${index === currentStepIndex && styles.activeStepBubble}
       ${step.status === STEP_STATUSES.UNVISITED && currentStepIndex !== index && styles.inactiveStepBubble}
+      ${step.status === STEP_STATUSES.COMPLETED && currentStepIndex !== index && styles.completedStepBubble}
       `}
       style={{
         ...((getStyles(Elements.Bubble)) || {}),
@@ -46,41 +46,6 @@ const Bubble: FC<IBubbleProps> = (props) => {
         || index + 1}
       </>
     )}
-      <div className={`${styles.labelContainer} ${styles[`labelContainer__${labelPosition || LABEL_POSITION.RIGHT}`]}`}>
-        {step?.label && (
-          <span
-            className={`${styles.labelTitle}
-                  ${showCursor && styles.cursorPointer}
-                  ${index === currentStepIndex && styles.activeLabelTitle}`}
-            style={{
-              ...((getStyles(Elements.LabelTitle)) || {}),
-              ...((index === currentStepIndex && getStyles(Elements.ActiveLabelTitle)) || {})
-            }}
-            onClick={(): void | null => handleStepClick && handleStepClick()}
-            role="presentation"
-            id={`stepper-label-${index}`}
-          >
-            {step.label}
-          </span>
-        )}
-        {step?.description && (
-          <span
-            className={`${styles.labelDescription}
-                  ${handleStepClick && styles.cursorPointer}
-                  ${index === currentStepIndex && styles.activeLabelDescription}`}
-            style={{
-              ...((getStyles(Elements.LabelDescription)) || {}),
-              ...((index === currentStepIndex &&
-                      getStyles(Elements.ActiveLabelDescription)) || {})
-            }}
-            onClick={(): void | null => handleStepClick && handleStepClick()}
-            role="presentation"
-            id={`stepper-desc-${index}`}
-          >
-            {step.description}
-          </span>
-        )}
-      </div>
     </div>
   );
 };

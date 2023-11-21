@@ -5,8 +5,8 @@ import {
     queryByAttribute,
     queryAllByAttribute
 } from "@testing-library/react";
-import { IStep } from '../stepper-component/types';
-import Stepper from "../stepper-component/stepperComponent";
+import { IStep } from '../stepper/types';
+import Stepper from "../stepper/stepperComponent";
 
 const getById = queryByAttribute.bind(null, 'id');
 const getAllById = queryAllByAttribute.bind(null, 'id');

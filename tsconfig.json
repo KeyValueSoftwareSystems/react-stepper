@@ -10,6 +10,7 @@
       "noEmit": false,
       "declaration": true,
       "suppressImplicitAnyIndexErrors": true,
+      "ignoreDeprecations": "5.0",
       "allowSyntheticDefaultImports": true,
       "lib": ["es2018", "dom"],
       "moduleResolution": "node",
