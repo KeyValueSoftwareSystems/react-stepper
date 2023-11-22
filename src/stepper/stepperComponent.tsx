@@ -187,6 +187,7 @@ const Stepper = (props: IStepperProps): any => {
           }`}
         >
           {isVertical && (
+            // In a vertical stepper, utilize an extra middle connector to dynamically adjust the length based on the height of step descriptions. This ensures a visually balanced layout by accommodating varying content heights.
             <div
               className="middleConnectorWrapper"
               style={{
@@ -229,7 +230,7 @@ const Stepper = (props: IStepperProps): any => {
       >
         {steps.map(renderStep)}
       </ul>
-      {!isVertical &&
+      {!isVertical && // For horizontal stepper, the content is displayed below the stepper with full width
         renderContent &&
         renderContent(steps[currentStepIndex], currentStepIndex)}
     </>
