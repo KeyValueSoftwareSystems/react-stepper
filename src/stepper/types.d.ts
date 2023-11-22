@@ -5,7 +5,7 @@ import { Elements } from "../constants";
 export type IStep = {
   label: string;
   description?: string;
-  status: string;
+  completed?: boolean;
 };
 
 export type IStepperProps = {
