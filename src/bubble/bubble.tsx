@@ -11,7 +11,7 @@ const Bubble: FC<IBubbleProps> = (props) => {
     renderAdornment,
     index,
     currentStepIndex,
-    handleStepClick = null,
+    handleStepClick,
     showCursor,
     getStyles,
   } = props;

@@ -4,10 +4,10 @@ import type { IStep, IStepperProps } from "./types";
 import Bubble from "../bubble";
 import { LABEL_POSITION, Elements, ORIENTATION } from "../constants";
 
-const Stepper: FC<IStepperProps> = (props) => {
+const Stepper = (props: IStepperProps): any => {
   const {
     steps,
-    currentStepIndex = 1,
+    currentStepIndex = 0,
     styles = {},
     labelPosition = LABEL_POSITION.RIGHT,
     orientation = ORIENTATION.VERTICAL,
@@ -19,6 +19,7 @@ const Stepper: FC<IStepperProps> = (props) => {
 
   const isVertical = orientation === ORIENTATION.VERTICAL;
 
+  // isInline = true means label and steps are in the same axis (eg: Horizontal stepper with label direction left/right and vertical stepper with label direction top/bottom)
   const isInline =
     (isVertical &&
       [LABEL_POSITION.TOP, LABEL_POSITION.BOTTOM].includes(labelPosition)) ||
@@ -61,18 +62,19 @@ const Stepper: FC<IStepperProps> = (props) => {
     } ${idx === steps.length - 1 ? "hiddenConnector" : ""}`;
 
     const getLabelStyle = () => {
-      if(orientation === ORIENTATION.HORIZONTAL) {
-        if(labelPosition === LABEL_POSITION.TOP) return "horizontalLabelTop";
-        else if(labelPosition === LABEL_POSITION.BOTTOM) return "horizontalLabelBottom";
-        return "";
+      if (orientation === ORIENTATION.HORIZONTAL) {
+        if (labelPosition === LABEL_POSITION.TOP) return "horizontalLabelTop";
+        else if (labelPosition === LABEL_POSITION.BOTTOM)
+          return "horizontalLabelBottom";
       } else {
-        if(labelPosition ===LABEL_POSITION.RIGHT) return "verticalLabelRight";
+        if (labelPosition === LABEL_POSITION.RIGHT) return "verticalLabelRight";
       }
     };
 
     const defaultRenderStep = () => {
       return (
         <div
+          id="stepper-step"
           className={
             isVertical
               ? `verticalStepperWrapper ${
@@ -83,23 +85,45 @@ const Stepper: FC<IStepperProps> = (props) => {
         >
           {!isInline && (
             <div className={getLabelStyle()}>
-              <div className="label" style={{
-                ...((getStyles(Elements.LabelTitle, step,idx) || {})),
-                ...(idx === currentStepIndex && ((getStyles(Elements.ActiveLabelTitle, step,idx) || {})))
-              }}>{label}</div>
-              {(showAllDescriptions || idx === currentStepIndex) && orientation === ORIENTATION.HORIZONTAL &&
+              <div
+                className="label"
+                id={`step-label-${idx}`}
+                style={{
+                  ...(getStyles(Elements.LabelTitle, step, idx) || {}),
+                  ...(idx === currentStepIndex &&
+                    (getStyles(Elements.ActiveLabelTitle, step, idx) || {})),
+                }}
+              >
+                {label}
+              </div>
+              {(showAllDescriptions || idx === currentStepIndex) &&
+                orientation === ORIENTATION.HORIZONTAL &&
                 labelPosition === LABEL_POSITION.TOP && (
-                  <div className="description">{description}</div>
+                  <div
+                    className="description"
+                    id={`step-horizontal-top-description-${idx}`}
+                  >
+                    {description}
+                  </div>
                 )}
             </div>
           )}
           <div className="stepContainer" id={`${idx}-bubble`} ref={bubbleRef}>
-            <div className={leftConnectorClassName} style={{
-              ...((currentStepIndex >= idx) ? (getStyles(Elements.LineSeparator, step,idx) || {}) : (getStyles(Elements.InactiveLineSeparator, step,idx) || {}))
-            }}/>
+            <div
+              className={leftConnectorClassName}
+              style={{
+                ...(currentStepIndex >= idx
+                  ? getStyles(Elements.LineSeparator, step, idx) || {}
+                  : getStyles(Elements.InactiveLineSeparator, step, idx) || {}),
+              }}
+            />
             <div
               className={`bubble ${
-                [LABEL_POSITION.TOP, LABEL_POSITION.LEFT].includes(labelPosition) ? "reversedBubble" : ""
+                [LABEL_POSITION.TOP, LABEL_POSITION.LEFT].includes(
+                  labelPosition
+                )
+                  ? "reversedBubble"
+                  : ""
               }`}
             >
               <Bubble
@@ -119,17 +143,26 @@ const Stepper: FC<IStepperProps> = (props) => {
             {isInline && (
               <div
                 className={`labelContainer ${
-                  [LABEL_POSITION.TOP, LABEL_POSITION.LEFT].includes(labelPosition)
+                  [LABEL_POSITION.TOP, LABEL_POSITION.LEFT].includes(
+                    labelPosition
+                  )
                     ? "reversedLabelContainer"
                     : ""
                 }`}
               >
-                <div className="label">{label}</div>
+                <div className="label" id={`step-inline-label-${idx}`}>
+                  {label}
+                </div>
               </div>
             )}
-            <div className={rightConnectorClassName} style={{
-              ...((currentStepIndex > idx) ? (getStyles(Elements.LineSeparator, step,idx) || {}) : (getStyles(Elements.InactiveLineSeparator, step,idx) || {}))
-            }} />
+            <div
+              className={rightConnectorClassName}
+              style={{
+                ...(currentStepIndex > idx
+                  ? getStyles(Elements.LineSeparator, step, idx) || {}
+                  : getStyles(Elements.InactiveLineSeparator, step, idx) || {}),
+              }}
+            />
           </div>
         </div>
       );
@@ -160,13 +193,23 @@ const Stepper: FC<IStepperProps> = (props) => {
                 width: bubbleWidth,
               }}
             >
-              <div className={middleConnectorClassName} style={{
-              ...((currentStepIndex > idx) ? (getStyles(Elements.LineSeparator, step,idx) || {}) : (getStyles(Elements.InactiveLineSeparator, step,idx) || {}))
-            }} />
+              <div
+                className={middleConnectorClassName}
+                style={{
+                  ...(currentStepIndex > idx
+                    ? getStyles(Elements.LineSeparator, step, idx) || {}
+                    : getStyles(Elements.InactiveLineSeparator, step, idx) ||
+                      {}),
+                }}
+              />
             </div>
           )}
           <div>
-            {(showAllDescriptions || idx === currentStepIndex) && <div className="description">{description}</div>}
+            {(showAllDescriptions || idx === currentStepIndex) && (
+              <div className="description" id={`step-description-${idx}`}>
+                {description}
+              </div>
+            )}
             {isVertical &&
               idx === currentStepIndex &&
               renderContent &&
@@ -179,14 +222,16 @@ const Stepper: FC<IStepperProps> = (props) => {
 
   return (
     <>
-    <ul
-      className={`stepper ${
-        isVertical ? "verticalStepper" : "horizontalStepper"
-      }`}
-    >
-      {steps.map(renderStep)}
-    </ul>
-    {!isVertical && renderContent && renderContent(steps[currentStepIndex], currentStepIndex)}
+      <ul
+        className={`stepper ${
+          isVertical ? "verticalStepper" : "horizontalStepper"
+        }`}
+      >
+        {steps.map(renderStep)}
+      </ul>
+      {!isVertical &&
+        renderContent &&
+        renderContent(steps[currentStepIndex], currentStepIndex)}
     </>
   );
 };

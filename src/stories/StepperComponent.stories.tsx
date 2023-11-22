@@ -70,7 +70,7 @@ HorizontalStepperWithLabelOnTop.args = {
   steps,
   showAllDescriptions: false,
   renderContent: () => {
-    return (<div style={{width: "100%", height: "400px", backgroundColor: "red"}}>Test</div>)
+    return (<div style={{width: "100%", height: "400px", backgroundColor: "gray", display: "flex", justifyContent: "center", alignItems: "center"}}>Test</div>)
   }
 };
 
@@ -100,7 +100,7 @@ VerticalStepperWithLabelOnRight.args = {
   steps,
   showAllDescriptions: false,
   renderContent: () => {
-    return (<div style={{width: "100%", height: "400px", backgroundColor: "red"}}>Test</div>)
+    return (<div style={{width: "100%", height: "400px", backgroundColor: "gray", display: "flex", justifyContent: "center", alignItems: "center"}}>Test</div>)
   }
 };
 
