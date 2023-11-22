@@ -4,7 +4,7 @@ import type { IStep, IStepperProps } from "./types";
 import Bubble from "../bubble";
 import { LABEL_POSITION, Elements, ORIENTATION } from "../constants";
 
-const Stepper = (props: IStepperProps): any => {
+const Stepper = (props: IStepperProps): JSX.Element => {
   const {
     steps,
     currentStepIndex = 0,
