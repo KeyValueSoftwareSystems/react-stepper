@@ -15,8 +15,8 @@ const getAllById = queryAllByAttribute.bind(null, 'id');
 
 test("Stepper Component - Label and description", async () => {
     const steps: IStep[] = [{
-        label: 'Step 1',
-        description: 'Demo description',
+        stepLabel: 'Step 1',
+        stepDescription: 'Demo description',
         completed: true,
     }]
     const dom = render(<Stepper steps={steps}  />)
@@ -28,7 +28,7 @@ test("Stepper Component - Label and description", async () => {
 
 test("Stepper Component - No description", async () => {
     const steps: IStep[] = [{
-        label: 'Step 1',
+        stepLabel: 'Step 1',
         completed: true,
     }];
     const dom = render(<Stepper steps={steps} />)
@@ -44,17 +44,17 @@ test("Stepper Component - No description", async () => {
 
 test("Stepper Component - with multiple steps and currentStepIndex passed", async () => {
     const steps: IStep[] = [{
-        label: 'Step 1',
-        description: "Step 1 description",
+        stepLabel: 'Step 1',
+        stepDescription: "Step 1 description",
         completed: true,
     },{
-        label: 'Step 2',
-        description: "Step 2 description",
+        stepLabel: 'Step 2',
+        stepDescription: "Step 2 description",
         completed: false,
     },
     {
-        label: 'Step 3',
-        description: "Step 3 description",
+        stepLabel: 'Step 3',
+        stepDescription: "Step 3 description",
         completed: false,
     }];
     const dom = render(<Stepper steps={steps} />);
@@ -64,8 +64,8 @@ test("Stepper Component - with multiple steps and currentStepIndex passed", asyn
 
 test("Stepper Component - On Click function", async () => {
     const steps: IStep[] = [{
-        label: 'Step 1',
-        description: 'Demo description',
+        stepLabel: 'Step 1',
+        stepDescription: 'Demo description',
         completed: true,
     }];
     const onClick = jest.fn();
@@ -82,15 +82,15 @@ test("Stepper Component - On Click function", async () => {
 
 test("Stepper Component - customized bubble", async () => {
     const steps: IStep[] = [{
-        label: 'Step 1',
-        description: 'Demo description',
+        stepLabel: 'Step 1',
+        stepDescription: 'Demo description',
         completed: true,
     }];
     const renderBubble = jest.fn();
     const dom = render(
         <Stepper
             steps={steps}
-            renderBubble={renderBubble}
+            renderNode={renderBubble}
         />
     )
     const bubble = await getById(dom.container, "stepper-bubble");
@@ -100,18 +100,18 @@ test("Stepper Component - customized bubble", async () => {
 
 test("Stepper Component - custom style", async () => {
     const steps: IStep[] = [{
-        label: 'Step 1',
-        description: 'Demo description 1',
+        stepLabel: 'Step 1',
+        stepDescription: 'Demo description 1',
         completed: true,
     },
     {
-        label: 'Step 2',
-        description: 'Demo description 2',
+        stepLabel: 'Step 2',
+        stepDescription: 'Demo description 2',
         completed: false,
     },
     {
-        label: 'Step 1',
-        description: 'Demo description 3',
+        stepLabel: 'Step 1',
+        stepDescription: 'Demo description 3',
         completed: false,
     }];
     const styles = {
@@ -147,7 +147,7 @@ test("Stepper Component - custom style", async () => {
     const dom = render(
         <Stepper
             steps={steps}
-            renderBubble={renderBubble}
+            renderNode={renderBubble}
             currentStepIndex={1}
             styles={styles}
         />
@@ -160,8 +160,8 @@ test("Stepper Component - custom style", async () => {
 
 test("Stepper Component - orientation:vertical and labelPosition: top", async () => {
     const steps: IStep[] = [{
-        label: 'Step 1',
-        description: 'Demo description',
+        stepLabel: 'Step 1',
+        stepDescription: 'Demo description',
         completed: true,
     }]
     const dom = render(<Stepper steps={steps} orientation={ORIENTATION.HORIZONTAL} labelPosition={LABEL_POSITION.TOP}  />)
@@ -173,8 +173,8 @@ test("Stepper Component - orientation:vertical and labelPosition: top", async ()
 
 test("Stepper Component - orientation:vertical and labelPosition: bottom", async () => {
     const steps: IStep[] = [{
-        label: 'Step 1',
-        description: 'Demo description',
+        stepLabel: 'Step 1',
+        stepDescription: 'Demo description',
         completed: true,
     }]
     const dom = render(<Stepper steps={steps} orientation={ORIENTATION.HORIZONTAL} labelPosition={LABEL_POSITION.BOTTOM}  />)
@@ -186,8 +186,8 @@ test("Stepper Component - orientation:vertical and labelPosition: bottom", async
 
 test("Stepper Component - orientation:vertical and labelPosition: bottom", async () => {
     const steps: IStep[] = [{
-        label: 'Step 1',
-        description: 'Demo description',
+        stepLabel: 'Step 1',
+        stepDescription: 'Demo description',
         completed: true,
     }]
     const dom = render(<Stepper steps={steps} orientation={ORIENTATION.HORIZONTAL} labelPosition={LABEL_POSITION.LEFT}  />)

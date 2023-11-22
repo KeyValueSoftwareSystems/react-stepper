@@ -1,19 +1,18 @@
 import React, { FC } from "react";
-import type { IBubbleProps } from "./types";
+import type { INodeProps } from "./types";
 import { Elements } from "../constants";
 import whiteTick from '../assets/white-tick.svg';
-import { LABEL_POSITION } from '../constants';
 import styles from './styles.module.scss';
 
-const Bubble: FC<IBubbleProps> = (props) => {
+const Node: FC<INodeProps> = (props) => {
   const {
     step,
-    renderAdornment,
+    renderNode,
     index,
     currentStepIndex,
     handleStepClick,
     showCursor,
-    getStyles,
+    getStyles
   } = props;
 
   return (
@@ -34,7 +33,7 @@ const Bubble: FC<IBubbleProps> = (props) => {
       role="presentation"
       id="stepper-bubble"
     >
-      {(renderAdornment && renderAdornment(step, index))
+      {(renderNode && renderNode(step, index))
     || (
       <>
         {step?.completed && (
@@ -50,4 +49,4 @@ const Bubble: FC<IBubbleProps> = (props) => {
   );
 };
 
-export default Bubble;
+export default Node;

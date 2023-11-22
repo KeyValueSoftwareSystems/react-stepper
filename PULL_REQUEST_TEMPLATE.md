@@ -9,7 +9,7 @@
 
 - [ ] **Read the contributing guidelines.**
 - [ ] **Linked to an issue:** Fixes # (replace with the issue number, if applicable)
-- [ ] **Branch is up-to-date with the base branch:** `master`
+- [ ] **Branch is up-to-date with the base branch:** `main`
 - [ ] **Changes pass tests locally:** `npm test` or `yarn test`
 - [ ] **Documentation has been updated, if necessary**
 - [ ] **Code follows the style guide of the project**

@@ -2,9 +2,9 @@ import { ReactElement } from "react";
 import { IStep } from "../stepper/types";
 import { Elements } from "../constants";
 
-export type IBubbleProps = {
+export type INodeProps = {
   step: IStep;
-  renderAdornment?(step: IStep, index: number): ReactElement;
+  renderNode?(step: IStep, index: number): ReactElement;
   index: number;
   currentStepIndex?: number;
   handleStepClick(): void;

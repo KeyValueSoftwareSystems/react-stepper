@@ -23,23 +23,23 @@ const Template: ComponentStory<typeof Stepper> = (props) => (
 
 const steps = [
   {
-    label: "Step 1",
-    description: "The quick brown fox jumps over the lazy dog",
+    stepLabel: "Step 1",
+    stepDescription: "The quick brown fox jumps over the lazy dog",
     completed: true,
   },
   {
-    label: "Step 2",
-    description: "The quick brown fox jumps over the lazy dog",
+    stepLabel: "Step 2",
+    stepDescription: "The quick brown fox jumps over the lazy dog",
     completed: true,
   },
   {
-    label: "Step 3",
-    description: "The quick brown fox jumps over the lazy dog",
+    stepLabel: "Step 3",
+    stepDescription: "The quick brown fox jumps over the lazy dog",
     completed: false,
   },
   {
-    label: "Step 4",
-    description: "The quick brown fox jumps over the lazy dog",
+    stepLabel: "Step 4",
+    stepDescription: "The quick brown fox jumps over the lazy dog",
     completed: false,
   },
 ];
@@ -50,7 +50,7 @@ HorizontalStepperWithLabelOnLeft.args = {
   labelPosition: "left",
   currentStepIndex: 2,
   steps,
-  showAllDescriptions: false,
+  showDescriptionsForAllSteps: false,
 };
 
 export const HorizontalStepperWithLabelOnRight = Template.bind({});
@@ -59,7 +59,7 @@ HorizontalStepperWithLabelOnRight.args = {
   labelPosition: "right",
   currentStepIndex: 2,
   steps,
-  showAllDescriptions: false,
+  showDescriptionsForAllSteps: false,
 };
 
 export const HorizontalStepperWithLabelOnTop = Template.bind({});
@@ -68,8 +68,8 @@ HorizontalStepperWithLabelOnTop.args = {
   labelPosition: "top",
   currentStepIndex: 2,
   steps,
-  showAllDescriptions: false,
-  renderContent: () => {
+  showDescriptionsForAllSteps: false,
+  stepContent: () => {
     return (<div style={{width: "100%", height: "400px", backgroundColor: "gray", display: "flex", justifyContent: "center", alignItems: "center"}}>Test</div>)
   }
 };
@@ -80,7 +80,7 @@ HorizontalStepperWithLabelOnBottom.args = {
   labelPosition: "bottom",
   currentStepIndex: 2,
   steps,
-  showAllDescriptions: false,
+  showDescriptionsForAllSteps: false,
 };
 
 export const VerticalStepperWithLabelOnLeft = Template.bind({});
@@ -89,7 +89,7 @@ VerticalStepperWithLabelOnLeft.args = {
   labelPosition: "left",
   currentStepIndex: 2,
   steps,
-  showAllDescriptions: false,
+  showDescriptionsForAllSteps: false,
 };
 
 export const VerticalStepperWithLabelOnRight = Template.bind({});
@@ -98,8 +98,8 @@ VerticalStepperWithLabelOnRight.args = {
   labelPosition: "right",
   currentStepIndex: 2,
   steps,
-  showAllDescriptions: false,
-  renderContent: () => {
+  showDescriptionsForAllSteps: false,
+  stepContent: () => {
     return (<div style={{width: "100%", height: "400px", backgroundColor: "gray", display: "flex", justifyContent: "center", alignItems: "center"}}>Test</div>)
   }
 };
@@ -110,7 +110,7 @@ VerticalStepperWithLabelOnTop.args = {
   labelPosition: "top",
   currentStepIndex: 2,
   steps,
-  showAllDescriptions: false,
+  showDescriptionsForAllSteps: false,
 };
 
 export const VerticalStepperWithLabelOnBottom = Template.bind({});
@@ -119,5 +119,5 @@ VerticalStepperWithLabelOnBottom.args = {
   labelPosition: "bottom",
   currentStepIndex: 2,
   steps,
-  showAllDescriptions: false,
+  showDescriptionsForAllSteps: false,
 };

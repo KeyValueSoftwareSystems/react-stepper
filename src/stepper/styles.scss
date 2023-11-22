@@ -52,6 +52,11 @@ $completed-color: #47aed6;
   .activeConnector {
     background-color: #312ec0;
   }
+  .descriptionContainer {
+    display: flex;
+    justify-content: center;
+  }
+  
 }
 
 .verticalStepper {
@@ -89,6 +94,10 @@ $completed-color: #47aed6;
   .activeConnector {
     background-color: #312ec0;
   }
+  .descriptionContainer {
+    display: flex;
+  }
+  
 }
 
 
@@ -144,10 +153,6 @@ $completed-color: #47aed6;
   order: 3;
 }
 
-.descriptionContainer {
-  display: flex;
-}
-
 .leftDescription {
   flex-direction: row-reverse;
 }
@@ -181,6 +186,11 @@ $completed-color: #47aed6;
 }
 
 .middleConnectorWrapper {
+  display: flex;
+  justify-content: center;;
+}
+
+.horizontalStepperDescription {
   display: flex;
   justify-content: center;;
 }

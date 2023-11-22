@@ -1,7 +1,7 @@
 {
-  "name": "@keyvaluesystems/react-vertical-stepper",
+  "name": "@keyvaluesystems/react-stepper",
   "version": "0.1.4",
-  "description": "A fully customizable vertical stepper component",
+  "description": "A fully customizable stepper component",
   "main": "build/index.js",
   "source": "src/index.tsx",
   "types": "build/types/index.d.ts",
@@ -35,7 +35,8 @@
     "steps",
     "stepper",
     "vertical-stepper",
-    " steps-ui",
+    "horizontal stepper",
+    "steps-ui",
     "workflow-stepper",
     "progress-ui"
   ],
