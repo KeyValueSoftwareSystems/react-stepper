@@ -86,16 +86,16 @@ test("Stepper Component - customized bubble", async () => {
         stepDescription: 'Demo description',
         completed: true,
     }];
-    const renderBubble = jest.fn();
+    const renderNode = jest.fn();
     const dom = render(
         <Stepper
             steps={steps}
-            renderNode={renderBubble}
+            renderNode={renderNode}
         />
     )
     const bubble = await getById(dom.container, "stepper-bubble");
     fireEvent.click(bubble);
-    expect(renderBubble).toBeCalled();
+    expect(renderNode).toBeCalled();
 })
 
 test("Stepper Component - custom style", async () => {
@@ -143,11 +143,11 @@ test("Stepper Component - custom style", async () => {
             backgroundColor: "black",
         }),
     }
-    const renderBubble = jest.fn();
+    const renderNode = jest.fn();
     const dom = render(
         <Stepper
             steps={steps}
-            renderNode={renderBubble}
+            renderNode={renderNode}
             currentStepIndex={1}
             styles={styles}
         />

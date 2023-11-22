@@ -66,7 +66,7 @@ You can customize each step node  with your own DOM element using the `renderNod
 />
 ```
 
-The `step` param provided by the `renderBubble` callback is the same object you pass as array item in `steps` prop.
+The `step` param provided by the `renderNode` callback is the same object you pass as array item in `steps` prop.
 
 ## Props
 

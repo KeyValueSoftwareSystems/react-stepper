@@ -5,7 +5,11 @@ import Bubble from "../node";
 import { LABEL_POSITION, Elements, ORIENTATION } from "../constants";
 
 //  Each step consists of a node, a label, and connectors to the previous and next steps.
-const Step: (props: IStepProps) => JSX.Element = ({ stepperProps, step, index }: IStepProps) => {
+const Step: (props: IStepProps) => JSX.Element = ({
+  stepperProps,
+  step,
+  index
+}: IStepProps) => {
   const {
     steps,
     currentStepIndex = 0,
@@ -25,10 +29,10 @@ const Step: (props: IStepProps) => JSX.Element = ({ stepperProps, step, index }:
   /* isInline = true means label and steps are in the same axis (eg: Horizontal stepper with label direction left/right and
    vertical stepper with label direction top/bottom) */
   const isInline =
-   (isVertical &&
-     [LABEL_POSITION.TOP, LABEL_POSITION.BOTTOM].includes(labelPosition)) ||
-   (!isVertical &&
-     [LABEL_POSITION.LEFT, LABEL_POSITION.RIGHT].includes(labelPosition));
+    (isVertical &&
+      [LABEL_POSITION.TOP, LABEL_POSITION.BOTTOM].includes(labelPosition)) ||
+    (!isVertical &&
+      [LABEL_POSITION.LEFT, LABEL_POSITION.RIGHT].includes(labelPosition));
 
   const getStyles = (element: Elements, step: IStep, index: number): object => {
     const getElementStyle = styles[element];
@@ -76,43 +80,52 @@ const Step: (props: IStepProps) => JSX.Element = ({ stepperProps, step, index }:
       return "verticalLabelRight";
   };
 
-  const StepContent: () => JSX.Element = () => <div
-    className={`descriptionContainer ${
-      labelPosition === "left" ? "labelLeft leftDescription" : ""
-    }`}
-  >
-    {isVertical && (
-    /* In a vertical stepper, utilize an extra middle connector to dynamically adjust the length based on the height of step descriptions.
+  const StepContent: () => JSX.Element = () => (
+    <div
+      className={`descriptionContainer ${
+        labelPosition === "left" ? "labelLeft leftDescription" : ""
+      }`}
+    >
+      {isVertical && (
+        /* In a vertical stepper, utilize an extra middle connector to dynamically adjust the length based on the height of step descriptions.
   This ensures a visually balanced layout by accommodating varying content heights. */
-      <div
-        className="middleConnectorWrapper"
-        style={{
-          width: bubbleWidth
-        }}
-      >
         <div
-          className={middleConnectorClassName}
+          className="middleConnectorWrapper"
           style={{
-            ...(currentStepIndex > index
-              ? getStyles(Elements.LineSeparator, step, index) || {}
-              : getStyles(Elements.InactiveLineSeparator, step, index) ||
-            {})
+            width: bubbleWidth
           }}
-        />
-      </div>
-    )}
-    <div>
-      {(showDescriptionsForAllSteps || index === currentStepIndex) && (
-        <div className="description" id={`step-description-${index}`}>
-          {stepDescription}
+        >
+          <div
+            className={middleConnectorClassName}
+            style={{
+              ...(currentStepIndex > index
+                ? getStyles(Elements.LineSeparator, step, index) || {}
+                : getStyles(Elements.InactiveLineSeparator, step, index) || {})
+            }}
+          />
         </div>
       )}
-      {isVertical &&
-    index === currentStepIndex &&
-    stepContent &&
-    stepContent(step, index)}
+      <div>
+        {(showDescriptionsForAllSteps || index === currentStepIndex) && (
+          <div
+            className="description"
+            id={`step-description-${index}`}
+            style={{
+              ...(currentStepIndex === index
+                ? getStyles(Elements.ActiveLabelDescription, step, index) || {}
+                : getStyles(Elements.LabelDescription, step, index) || {})
+            }}
+          >
+            {stepDescription}
+          </div>
+        )}
+        {isVertical &&
+          index === currentStepIndex &&
+          stepContent &&
+          stepContent(step, index)}
+      </div>
     </div>
-  </div>
+  );
 
   const StepComponent: () => JSX.Element = () => (
     <div
@@ -144,6 +157,12 @@ const Step: (props: IStepProps) => JSX.Element = ({ stepperProps, step, index }:
             <div
               className="description"
               id={`step-horizontal-top-description-${index}`}
+              style={{
+                ...(currentStepIndex === index
+                  ? getStyles(Elements.ActiveLabelDescription, step, index) ||
+                      {}
+                  : getStyles(Elements.LabelDescription, step, index) || {})
+              }}
             >
               {stepDescription}
             </div>
@@ -240,7 +259,7 @@ const Stepper = (props: IStepperProps): JSX.Element => {
           isVertical ? "verticalStepper" : "horizontalStepper"
         }`}
       >
-        {steps.map((step, index) => Step({stepperProps: props, step, index}))}
+        {steps.map((step, index) => Step({ stepperProps: props, step, index }))}
       </ul>
       {!isVertical && // For horizontal stepper, the content is displayed below the stepper with full width
         stepContent &&
