@@ -51,7 +51,7 @@ const Step: (props: IStepProps) => JSX.Element = ({
       const width = bubble.getBoundingClientRect().width;
       setBubbleWidth(width);
     }
-  }, []);
+  }, [steps, bubbleRef]);
 
   // prevConnector represents the connector line from the current step's node (nth node) to the preceding step's node (n-1 th node).
   const prevConnectorClassName = `stepConnector leftConnector ${
@@ -90,9 +90,9 @@ const Step: (props: IStepProps) => JSX.Element = ({
         /* In a vertical stepper, utilize an extra middle connector to dynamically adjust the length based on the height of step descriptions.
   This ensures a visually balanced layout by accommodating varying content heights. */
         <div
-          className="middleConnectorWrapper"
+          className={labelPosition === LABEL_POSITION.LEFT ? "leftContentMiddleConnectorWrapper" :  "middleConnectorWrapper"}
           style={{
-            width: bubbleWidth
+            width: (bubbleWidth / 2) + 1
           }}
         >
           <div
@@ -105,7 +105,7 @@ const Step: (props: IStepProps) => JSX.Element = ({
           />
         </div>
       )}
-      <div>
+      <div className={isVertical ? "verticalContentWrapper" : ""}>
         {(showDescriptionsForAllSteps || index === currentStepIndex) && (
           <div
             className="description"
@@ -207,7 +207,12 @@ const Step: (props: IStepProps) => JSX.Element = ({
                 : ""
             }`}
           >
-            <div className="label" id={`step-inline-label-${index}`}>
+            <div className={`label ${isVertical && "verticalStepperInlineLabel"}`} id={`step-inline-label-${index}`}
+              style={{
+                ...(getStyles(Elements.LabelTitle, step, index) || {}),
+                ...(index === currentStepIndex &&
+                (getStyles(Elements.ActiveLabelTitle, step, index) || {}))
+              }}>
               {stepLabel}
             </div>
           </div>

@@ -137,12 +137,10 @@ $completed-color: #47aed6;
   max-width: 400px;
 }
 
-.activeLabel {
-  font-size: 1em;
-}
-
-.inActiveLabel {
-  color: gray;
+.verticalStepperInlineLabel {
+  display: "flex";
+  width: 100px;
+  justify-content: center;
 }
 
 .reversedLabelContainer {
@@ -183,11 +181,22 @@ $completed-color: #47aed6;
 
 .description {
   color: #4e4b4b;
+  padding-bottom: 5px;
 }
 
 .middleConnectorWrapper {
   display: flex;
-  justify-content: center;;
+  justify-content: flex-end;;
+}
+
+.leftContentMiddleConnectorWrapper { 
+  display: flex;
+  justify-content: flex-start;
+}
+
+.verticalContentWrapper {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .horizontalStepperDescription {
