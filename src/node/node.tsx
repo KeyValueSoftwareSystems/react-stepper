@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 import type { INodeProps } from "./types";
 import { Elements } from "../constants";
-import whiteTick from '../assets/white-tick.svg';
-import styles from './styles.module.scss';
+import whiteTick from "../assets/white-tick.svg";
+import styles from "./styles.module.scss";
 
 const Node: FC<INodeProps> = (props) => {
   const {

@@ -23,7 +23,7 @@
     "url": "git+https://github.com/KeyValueSoftwareSystems/react-stepper.git"
   },
   "author": "Keyvalue",
-  "license": "ISC",
+  "license": "MIT",
   "homepage": "https://github.com/KeyValueSoftwareSystems/react-stepper",
   "keywords": [
     "library",
