@@ -1,7 +1,7 @@
 {
-  "name": "@keyvaluesystems/react-vertical-stepper",
+  "name": "@keyvaluesystems/react-stepper",
   "version": "0.1.4",
-  "description": "A fully customizable vertical stepper component",
+  "description": "A fully customizable stepper component",
   "main": "build/index.js",
   "source": "src/index.tsx",
   "types": "build/types/index.d.ts",
@@ -20,13 +20,25 @@
   },
   "repository": {
     "type": "github",
-    "url": "git+https://github.com/KeyValueSoftwareSystems/react-vertical-stepper.git"
+    "url": "git+https://github.com/KeyValueSoftwareSystems/react-stepper.git"
   },
   "author": "Keyvalue",
   "license": "ISC",
-  "homepage": "https://github.com/KeyValueSoftwareSystems/react-vertical-stepper",
-  "keywords": ["library", "starter", "es6", "react", "typescript", "webpack",
-    "steps", "stepper", "vertical-stepper", " steps-ui", "workflow-stepper", "progress-ui"
+  "homepage": "https://github.com/KeyValueSoftwareSystems/react-stepper",
+  "keywords": [
+    "library",
+    "starter",
+    "es6",
+    "react",
+    "typescript",
+    "webpack",
+    "steps",
+    "stepper",
+    "vertical-stepper",
+    "horizontal stepper",
+    "steps-ui",
+    "workflow-stepper",
+    "progress-ui"
   ],
   "devDependencies": {
     "@babel/cli": "^7.20.7",
@@ -103,7 +115,7 @@
     ]
   },
   "bugs": {
-    "url": "https://github.com/KeyValueSoftwareSystems/react-vertical-stepper/issues"
+    "url": "https://github.com/KeyValueSoftwareSystems/react-stepper/issues"
   },
   "dependencies": {}
 }

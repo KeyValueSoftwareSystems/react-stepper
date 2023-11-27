@@ -1,0 +1,205 @@
+$grey-color: #e1e1e1;
+$active-color: #312ec0;
+$completed-color: #47aed6;
+
+.stepper {
+  margin: 0;
+  padding: 1em;
+  display: flex;
+  font-family: inherit;
+  list-style: none;
+}
+
+.horizontalStepperWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.verticalStepperWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.labelLeft {
+  justify-content: flex-end;
+}
+
+.horizontalStepper {
+  flex-flow: row nowrap;
+  width: 100%;
+  height: fit-content;
+  justify-content: center;
+  .stepContainer {
+    display: flex;
+    flex-direction: row;
+    height: auto;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  .stepConnector {
+    margin: 0;
+    display: flex;
+    flex: 1;
+    background-color: $grey-color;
+    overflow: hidden;
+    width: 100px;
+    min-width: 0;
+    height: 2px;
+  }
+  .activeConnector {
+    background-color: #312ec0;
+  }
+  .descriptionContainer {
+    display: flex;
+    justify-content: center;
+  }
+  
+}
+
+.verticalStepper {
+  flex-flow: column nowrap;
+  width: fit-content;
+  height: 100%;
+  .stepContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: auto;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  .stepConnector {
+    margin: 0;
+    display: flex;
+    flex: 1;
+    background-color: $grey-color;
+    overflow: hidden;
+    height: auto;
+    min-height: 10px;
+    width: 2px;
+  }
+  .middleStepConnector {
+    margin: 0;
+    display: flex;
+    background-color: $grey-color;
+    overflow: hidden;
+    height: auto;
+    min-height: 10px;
+    width: 2px;
+  }
+  .activeConnector {
+    background-color: #312ec0;
+  }
+  .descriptionContainer {
+    display: flex;
+  }
+  
+}
+
+
+.hiddenConnector {
+  visibility: hidden;
+}
+
+.node {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  order: 2;
+  padding: 3px;
+}
+.leftConnector {
+  order: 1;
+}
+.rightConnector {
+  order: 4;
+}
+
+.labelContainer {
+  display: flex;
+  word-wrap: break-word;
+  justify-content: center;
+  order: 3;
+}
+
+.label {
+  font-size: 0.9em;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 3px;
+  text-align: center;
+  font-weight: bold;
+  display: flex;
+  max-width: 400px;
+}
+
+.verticalStepperInlineLabel {
+  display: flex;
+  width: 100px;
+  justify-content: center;
+}
+
+.reversedLabelContainer {
+  order: 2;
+}
+
+.reversedNode {
+  order: 3;
+}
+
+.leftDescription {
+  flex-direction: row-reverse;
+}
+.verticalTextLeftContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.horizontalLabelTop {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  flex: 2 100%;
+}
+
+.horizontalLabelBottom {
+  display: flex;
+  justify-content: center;
+  order: 1;
+}
+
+.verticalLabelRight {
+  order: 1;
+}
+
+.description {
+  color: #4e4b4b;
+  padding-bottom: 5px;
+}
+
+.middleConnectorWrapper {
+  display: flex;
+  justify-content: flex-end;;
+}
+
+.leftContentMiddleConnectorWrapper { 
+  display: flex;
+  justify-content: flex-start;
+}
+
+.verticalContentWrapper {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.horizontalStepperDescription {
+  display: flex;
+  justify-content: center;;
+}

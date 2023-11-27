@@ -1,8 +1,8 @@
-.eachBubble {
+.eachNode {
     border-radius: 50%;
     height: 24px;
     width: 24px;
-    background: #312ec0;
+    background: #7b7b84;
     color: white;
     display: flex;
     align-items: center;
@@ -11,15 +11,18 @@
     font-weight: 400;
     font-size: 12px;
     line-height: 16px;
-    margin: 7px;
+    margin-top: 7px;
+    margin-bottom: 7px;
     position: relative;
   }
-  .activeStepBubble {
-    border: 7px solid #CBCBEF;
-    margin: 0;
+  .activeStepNode {
+    background: #312ec0;
   }
-  .inactiveStepBubble {
+  .inactiveStepNode {
     opacity: 0.4;
+  }
+  .completedStepNode {
+    background: #312ec0;
   }
   .whiteTickImg {
     object-fit: cover;
