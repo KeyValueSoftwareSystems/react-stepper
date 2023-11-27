@@ -1,4 +1,4 @@
-.eachBubble {
+.eachNode {
     border-radius: 50%;
     height: 24px;
     width: 24px;
@@ -15,13 +15,13 @@
     margin-bottom: 7px;
     position: relative;
   }
-  .activeStepBubble {
+  .activeStepNode {
     background: #312ec0;
   }
-  .inactiveStepBubble {
+  .inactiveStepNode {
     opacity: 0.4;
   }
-  .completedStepBubble {
+  .completedStepNode {
     background: #312ec0;
   }
   .whiteTickImg {

@@ -1,8 +1,9 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./styles.scss";
-import type { IStep, IStepperProps, IStepProps } from "./types";
-import Bubble from "../node";
+import type { IStepperProps, IStepProps } from "./types";
+import Node from "../node";
 import { LABEL_POSITION, Elements, ORIENTATION } from "../constants";
+import getStyles from "../utils/getStyles";
 
 //  Each step consists of a node, a label, and connectors to the previous and next steps.
 const Step: (props: IStepProps) => JSX.Element = ({
@@ -22,36 +23,27 @@ const Step: (props: IStepProps) => JSX.Element = ({
     renderNode
   } = stepperProps;
   const { stepLabel, stepDescription } = step;
-  const [bubbleWidth, setBubbleWidth] = useState(0);
+  const [nodeWidth, setNodeWidth] = useState(0);
 
   const isVertical = orientation === ORIENTATION.VERTICAL;
 
-  /* isInline = true means label and steps are in the same axis (eg: Horizontal stepper with label direction left/right and
+  /* isInlineLabelsAnsSteps = true means label and steps are in the same axis (eg: Horizontal stepper with label direction left/right and
    vertical stepper with label direction top/bottom) */
-  const isInline =
+  const isInlineLabelsAnsSteps =
     (isVertical &&
       [LABEL_POSITION.TOP, LABEL_POSITION.BOTTOM].includes(labelPosition)) ||
     (!isVertical &&
       [LABEL_POSITION.LEFT, LABEL_POSITION.RIGHT].includes(labelPosition));
 
-  const getStyles = (element: Elements, step: IStep, index: number): object => {
-    const getElementStyle = styles[element];
-    if (getElementStyle) {
-      return getElementStyle(step, index);
-    }
-    return {};
-  };
-
-  const bubbleRef = useRef<HTMLDivElement | null>(null);
+  const nodeRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const bubble = bubbleRef.current;
-
-    if (bubble) {
-      const width = bubble.getBoundingClientRect().width;
-      setBubbleWidth(width);
+    const node = nodeRef.current;
+    if (node) {
+      const width = node.getBoundingClientRect().width;
+      setNodeWidth(width);
     }
-  }, [steps, bubbleRef]);
+  }, [steps, nodeRef]);
 
   // prevConnector represents the connector line from the current step's node (nth node) to the preceding step's node (n-1 th node).
   const prevConnectorClassName = `stepConnector leftConnector ${
@@ -92,15 +84,15 @@ const Step: (props: IStepProps) => JSX.Element = ({
         <div
           className={labelPosition === LABEL_POSITION.LEFT ? "leftContentMiddleConnectorWrapper" :  "middleConnectorWrapper"}
           style={{
-            width: (bubbleWidth / 2) + 1
+            width: (nodeWidth / 2) + 1
           }}
         >
           <div
             className={middleConnectorClassName}
             style={{
               ...(currentStepIndex > index
-                ? getStyles(Elements.LineSeparator, step, index) || {}
-                : getStyles(Elements.InactiveLineSeparator, step, index) || {})
+                ? getStyles(styles, Elements.LineSeparator, step, index) || {}
+                : getStyles(styles, Elements.InactiveLineSeparator, step, index) || {})
             }}
           />
         </div>
@@ -112,8 +104,8 @@ const Step: (props: IStepProps) => JSX.Element = ({
             id={`step-description-${index}`}
             style={{
               ...(currentStepIndex === index
-                ? getStyles(Elements.ActiveLabelDescription, step, index) || {}
-                : getStyles(Elements.LabelDescription, step, index) || {})
+                ? getStyles(styles, Elements.ActiveLabelDescription, step, index) || {}
+                : getStyles(styles,Elements.LabelDescription, step, index) || {})
             }}
           >
             {stepDescription}
@@ -138,15 +130,15 @@ const Step: (props: IStepProps) => JSX.Element = ({
           : "horizontalStepperWrapper"
       }
     >
-      {!isInline && (
+      {!isInlineLabelsAnsSteps && (
         <div className={getLabelStyle()}>
           <div
             className="label"
             id={`step-label-${index}`}
             style={{
-              ...(getStyles(Elements.LabelTitle, step, index) || {}),
+              ...(getStyles(styles, Elements.LabelTitle, step, index) || {}),
               ...(index === currentStepIndex &&
-                (getStyles(Elements.ActiveLabelTitle, step, index) || {}))
+                (getStyles(styles, Elements.ActiveLabelTitle, step, index) || {}))
             }}
           >
             {stepLabel}
@@ -159,9 +151,9 @@ const Step: (props: IStepProps) => JSX.Element = ({
               id={`step-horizontal-top-description-${index}`}
               style={{
                 ...(currentStepIndex === index
-                  ? getStyles(Elements.ActiveLabelDescription, step, index) ||
+                  ? getStyles(styles, Elements.ActiveLabelDescription, step, index) ||
                       {}
-                  : getStyles(Elements.LabelDescription, step, index) || {})
+                  : getStyles(styles, Elements.LabelDescription, step, index) || {})
               }}
             >
               {stepDescription}
@@ -169,23 +161,23 @@ const Step: (props: IStepProps) => JSX.Element = ({
           )}
         </div>
       )}
-      <div className="stepContainer" id={`${index}-bubble`} ref={bubbleRef}>
+      <div className="stepContainer" id={`${index}-node`} ref={nodeRef}>
         <div
           className={prevConnectorClassName}
           style={{
             ...(currentStepIndex >= index
-              ? getStyles(Elements.LineSeparator, step, index) || {}
-              : getStyles(Elements.InactiveLineSeparator, step, index) || {})
+              ? getStyles(styles, Elements.LineSeparator, step, index) || {}
+              : getStyles(styles, Elements.InactiveLineSeparator, step, index) || {})
           }}
         />
         <div
-          className={`bubble ${
+          className={`node ${
             [LABEL_POSITION.TOP, LABEL_POSITION.LEFT].includes(labelPosition)
-              ? "reversedBubble"
+              ? "reversedNode"
               : ""
           }`}
         >
-          <Bubble
+          <Node
             step={step}
             index={index}
             currentStepIndex={currentStepIndex}
@@ -195,11 +187,11 @@ const Step: (props: IStepProps) => JSX.Element = ({
             showCursor={!!onStepClick}
             renderNode={renderNode}
             getStyles={(element: Elements): object =>
-              getStyles(element, step, index)
+              getStyles(styles, element, step, index)
             }
           />
         </div>
-        {isInline && (
+        {isInlineLabelsAnsSteps && (
           <div
             className={`labelContainer ${
               [LABEL_POSITION.TOP, LABEL_POSITION.LEFT].includes(labelPosition)
@@ -209,9 +201,9 @@ const Step: (props: IStepProps) => JSX.Element = ({
           >
             <div className={`label ${isVertical && "verticalStepperInlineLabel"}`} id={`step-inline-label-${index}`}
               style={{
-                ...(getStyles(Elements.LabelTitle, step, index) || {}),
+                ...(getStyles(styles, Elements.LabelTitle, step, index) || {}),
                 ...(index === currentStepIndex &&
-                (getStyles(Elements.ActiveLabelTitle, step, index) || {}))
+                (getStyles(styles, Elements.ActiveLabelTitle, step, index) || {}))
               }}>
               {stepLabel}
             </div>
@@ -221,8 +213,8 @@ const Step: (props: IStepProps) => JSX.Element = ({
           className={nextConnectorClassName}
           style={{
             ...(currentStepIndex > index
-              ? getStyles(Elements.LineSeparator, step, index) || {}
-              : getStyles(Elements.InactiveLineSeparator, step, index) || {})
+              ? getStyles(styles, Elements.LineSeparator, step, index) || {}
+              : getStyles(styles, Elements.InactiveLineSeparator, step, index) || {})
           }}
         />
       </div>

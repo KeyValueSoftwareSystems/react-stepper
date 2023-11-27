@@ -1,3 +1,3 @@
-import Bubble from "./node";
+import Node from "./node";
 
-export default Bubble;
+export default Node;

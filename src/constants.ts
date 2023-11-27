@@ -18,7 +18,7 @@ export enum Elements {
   ActiveLabelDescription = "ActiveLabelDescription",
   LineSeparator = "LineSeparator",
   InactiveLineSeparator = "InactiveLineSeparator",
-  Bubble = "Bubble",
-  ActiveBubble = "ActiveBubble",
-  InActiveBubble = "InActiveBubble",
+  Node = "Node",
+  ActiveNode = "ActiveNode",
+  InActiveNode = "InActiveNode",
 }

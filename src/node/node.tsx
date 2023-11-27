@@ -17,21 +17,21 @@ const Node: FC<INodeProps> = (props) => {
 
   return (
     <div
-      className={`${styles.eachBubble}
+      className={`${styles.eachNode}
       ${showCursor && styles.cursorPointer}
-      ${index === currentStepIndex && styles.activeStepBubble}
-      ${!step.completed && currentStepIndex !== index && styles.inactiveStepBubble}
-      ${step.completed && currentStepIndex !== index && styles.completedStepBubble}
+      ${index === currentStepIndex && styles.activeStepNode}
+      ${!step.completed && currentStepIndex !== index && styles.inactiveStepNode}
+      ${step.completed && currentStepIndex !== index && styles.completedStepNode}
       `}
       style={{
-        ...((getStyles(Elements.Bubble)) || {}),
-        ...((index === currentStepIndex && getStyles(Elements.ActiveBubble)) || {}),
+        ...((getStyles(Elements.Node)) || {}),
+        ...((index === currentStepIndex && getStyles(Elements.ActiveNode)) || {}),
         ...((!step.completed && currentStepIndex !== index
-            && getStyles(Elements.InActiveBubble)) || {})
+            && getStyles(Elements.InActiveNode)) || {})
       }}
       onClick={(): void | null => handleStepClick && handleStepClick()}
       role="presentation"
-      id="stepper-bubble"
+      id="stepper-node"
     >
       {(renderNode && renderNode(step, index))
     || (

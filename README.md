@@ -1,13 +1,13 @@
 # React Stepper
 
-<a href="https://www.npmjs.com/package/@keyvaluesystems/react-vertical-stepper"><img src="https://badgen.net/npm/v/@keyvaluesystems/react-vertical-stepper?color=blue" alt="npm version"></a> <a href="https://www.npmjs.com/package/@keyvaluesystems/react-vertical-stepper" ><img src="https://img.shields.io/npm/dw/@keyvaluesystems/react-vertical-stepper?label=Downloads" /></a> <a href="https://github.com/KeyValueSoftwareSystems/react-vertical-stepper"><img src="https://github.com/KeyValueSoftwareSystems/react-vertical-stepper/actions/workflows/update-and-publish.yml/badge.svg" alt="" /></a>
+<a href="https://www.npmjs.com/package/@keyvaluesystems/react-stepper"><img src="https://badgen.net/npm/v/@keyvaluesystems/react-stepper?color=blue" alt="npm version"></a> <a href="https://www.npmjs.com/package/@keyvaluesystems/react-stepper" ><img src="https://img.shields.io/npm/dw/@keyvaluesystems/react-stepper?label=Downloads" /></a> <a href="https://github.com/KeyValueSoftwareSystems/react-stepper"><img src="https://github.com/KeyValueSoftwareSystems/react-stepper/actions/workflows/update-and-publish.yml/badge.svg" alt="" /></a>
 
 <div style="display: flex; align-items: center;">
 <div style="padding-left: 30px">
-<img src="./src/assets/vertical-stepper-example.png" alt="" width="130" height="500"/>
+<img src="./src/assets/vertical-stepper-example.png" alt="" width="173" height="281"/>
 </div>
 <div style="padding-left: 30px">
-<img src="./src/assets/horizontal-stepper-example.png" alt="" width="500" height="100"/>
+<img src="./src/assets/horizontal-stepper-example.png" alt="" width="576" height="132"/>
 </div>
 </div>
 A fully customizable ready to use stepper UI package for React.
@@ -129,7 +129,7 @@ Props that can be passed to the component are listed below:
     <tr>
       <td><code><b>stepContent</b>(step: object, stepIndex: number): ReactElement</code></td>
       <td>
-        Props that allows for dynamic content display when the step is active
+        Prop that allows for dynamic content display when the step is active
       </td>
       <td><code>undefined</code></td>
     </tr>
@@ -150,7 +150,7 @@ the below code shows all the styles that can be overridden:
 
 ```jsx
 import React from "react";
-import Stepper from "react-vertical-stepper";
+import Stepper from "react-stepper";
 
 function App() {
   const stylesOverride = {
@@ -160,9 +160,9 @@ function App() {
     ActiveLabelDescription: (step, stepIndex) => ({ ...styles }),
     LineSeparator: (step, stepIndex) => ({ ...styles }),
     InactiveLineSeparator: (step, stepIndex) => ({ ...styles }),
-    Bubble: (step, stepIndex) => ({ ...styles }),
-    ActiveBubble: (step, stepIndex) => ({ ...styles }),
-    InActiveBubble: (step, stepIndex) => ({ ...styles }),
+    Node: (step, stepIndex) => ({ ...styles }),
+    ActiveNode: (step, stepIndex) => ({ ...styles }),
+    InActiveNode: (step, stepIndex) => ({ ...styles }),
   };
   return (
     <Stepper
@@ -182,6 +182,6 @@ export default App;
 - `ActiveLabelDescription` - overrides the step description style of current active step
 - `LineSeparator` - overrides default step connector line styles
 - `InactiveLineSeparator` - overrides styles of step connector line after current active step
-- `Bubble` - overrides default styles of step indicator
-- `ActiveBubble` - overrides default styles of step indicator of current active step
-- `InActiveBubble` - overrides default styles of step indicator that is not completed and not active
+- `Node` - overrides default styles of step indicator
+- `ActiveNode` - overrides default styles of step indicator of current active step
+- `InActiveNode` - overrides default styles of step indicator that is not completed and not active

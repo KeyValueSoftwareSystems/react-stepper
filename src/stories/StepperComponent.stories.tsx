@@ -1,13 +1,9 @@
 import React from "react";
 import {
-  StoryObj,
-  Meta,
   ComponentStory,
   ComponentMeta,
 } from "@storybook/react";
 import Stepper from "../stepper";
-import { IStep } from "../stepper/types";
-import { ORIENTATION } from "../constants";
 
 export default {
   title: "Example/Stepper",
@@ -99,9 +95,6 @@ VerticalStepperWithLabelOnRight.args = {
   currentStepIndex: 2,
   steps,
   showDescriptionsForAllSteps: false,
-  stepContent: () => {
-    return (<div style={{width: "100%", height: "400px", backgroundColor: "gray", display: "flex", justifyContent: "center", alignItems: "center"}}>Test</div>)
-  }
 };
 
 export const VerticalStepperWithLabelOnTop = Template.bind({});

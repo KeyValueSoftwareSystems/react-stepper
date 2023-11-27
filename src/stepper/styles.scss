@@ -105,7 +105,7 @@ $completed-color: #47aed6;
   visibility: hidden;
 }
 
-.bubble {
+.node {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -147,7 +147,7 @@ $completed-color: #47aed6;
   order: 2;
 }
 
-.reversedBubble {
+.reversedNode {
   order: 3;
 }
 
