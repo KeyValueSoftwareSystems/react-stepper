@@ -1,7 +1,7 @@
 {
-  "name": "@keyvaluesystems/react-vertical-stepper",
+  "name": "@keyvaluesystems/react-stepper",
   "version": "0.1.6",
-  "description": "A fully customizable vertical stepper component",
+  "description": "A fully customizable stepper component",
   "main": "build/index.js",
   "source": "src/index.tsx",
   "types": "build/types/index.d.ts",
@@ -20,11 +20,11 @@
   },
   "repository": {
     "type": "github",
-    "url": "git+https://github.com/KeyValueSoftwareSystems/react-vertical-stepper.git"
+    "url": "git+https://github.com/KeyValueSoftwareSystems/react-stepper.git"
   },
   "author": "Keyvalue",
-  "license": "ISC",
-  "homepage": "https://github.com/KeyValueSoftwareSystems/react-vertical-stepper",
+  "license": "MIT",
+  "homepage": "https://github.com/KeyValueSoftwareSystems/react-stepper",
   "keywords": [
     "library",
     "starter",
@@ -35,7 +35,8 @@
     "steps",
     "stepper",
     "vertical-stepper",
-    " steps-ui",
+    "horizontal stepper",
+    "steps-ui",
     "workflow-stepper",
     "progress-ui"
   ],
@@ -114,7 +115,7 @@
     ]
   },
   "bugs": {
-    "url": "https://github.com/KeyValueSoftwareSystems/react-vertical-stepper/issues"
+    "url": "https://github.com/KeyValueSoftwareSystems/react-stepper/issues"
   },
   "dependencies": {}
 }
