@@ -37,12 +37,14 @@ const Step: (props: IStepProps) => JSX.Element = ({
   const nodeRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const node = nodeRef.current;
-    if (node) {
-      const width = node.getBoundingClientRect().width;
-      setNodeWidth(width);
+    if(typeof window !== undefined) {
+      const node = nodeRef.current;
+      if (node) {
+        const width = node.getBoundingClientRect().width;
+        setNodeWidth(width);
+      }
     }
-  }, [steps, nodeRef]);
+  }, [steps]);
 
   // prevConnector represents the connector line from the current step's node (nth node) to the preceding step's node (n-1 th node).
   const prevConnectorClassName = `stepConnector leftConnector ${
