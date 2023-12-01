@@ -3,11 +3,11 @@
 <a href="https://www.npmjs.com/package/@keyvaluesystems/react-stepper"><img src="https://badgen.net/npm/v/@keyvaluesystems/react-stepper?color=blue" alt="npm version"></a> <a href="https://www.npmjs.com/package/@keyvaluesystems/react-stepper" ><img src="https://img.shields.io/npm/dw/@keyvaluesystems/react-stepper?label=Downloads" /></a> <a href="https://github.com/KeyValueSoftwareSystems/react-stepper"><img src="https://github.com/KeyValueSoftwareSystems/react-stepper/actions/workflows/update-and-publish.yml/badge.svg" alt="" /></a>
 
 <div style="display: flex; align-items: center;">
-<div style="padding-left: 30px">
-<img src="./src/assets/vertical-stepper-example.png" alt="" width="173" height="281"/>
+<div>
+<img src="./src/assets/vertical-stepper-example.png" alt="" width="155" height="252"/>
 </div>
-<div style="padding-left: 30px">
-<img src="./src/assets/horizontal-stepper-example.png" alt="" width="576" height="132"/>
+<div>
+<img src="./src/assets/horizontal-stepper-example.png" alt="" width="518" height="118"/>
 </div>
 </div>
 A fully customizable ready to use stepper UI package for React.
@@ -23,6 +23,8 @@ npm install  @keyvaluesystems/react-stepper
 
 You’ll need to install React separately since it isn't included in the package.
 
+Note for **Next.js** users, if you are using Next.js version 13 or later, you will have to use the `use client` feature to ensure proper compatibility.
+
 ## Usage
 
 React Stepper can run in a very basic mode by just providing the `steps` and `currentStepIndex` props like this:
@@ -31,18 +33,18 @@ React Stepper can run in a very basic mode by just providing the `steps` and `cu
 <Stepper
   steps={[
     {
-      label: "Step 1",
-      description: "This is Step 1",
+      stepLabel: "Step 1",
+      stepDescription: "This is Step 1",
       completed: true,
     },
     {
-      label: "Step 2",
-      description: "This is Step 2",
+      stepLabel: "Step 2",
+      stepDescription: "This is Step 2",
       completed: false,
     },
     {
-      label: "Step 3",
-      description: "This is Step 3",
+      stepLabel: "Step 3",
+      stepDescription: "This is Step 3",
       completed: false,
     },
   ]}
@@ -52,8 +54,8 @@ React Stepper can run in a very basic mode by just providing the `steps` and `cu
 
 The `steps` array is an array of objects with following keys:
 
-- `label` - A mandatory string representing the label/title of the step.
-- `description` - Optional extra information or description for the step.
+- `stepLabel` - A mandatory string representing the label/title of the step.
+- `stepDescription` - Optional extra information or description for the step.
 - `completed` -  Boolean flag for indicating step completion status.
 
 You can customize each step node  with your own DOM element using the `renderNode` prop
@@ -62,7 +64,7 @@ You can customize each step node  with your own DOM element using the `renderNod
 <Stepper
   steps={stepsArray}
   currentStepIndex={currentStepIndex}
-  renderNode={(step, stepIndex) => <div key={stepIndex}>{step.label}</div>}
+  renderNode={(step, stepIndex) => <div key={stepIndex}>{step.stepLabel}</div>}
 />
 ```
 
