@@ -37,12 +37,10 @@ const Step: (props: IStepProps) => JSX.Element = ({
   const nodeRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    if(typeof window !== undefined) {
-      const node = nodeRef.current;
-      if (node) {
-        const width = node.getBoundingClientRect().width;
-        setNodeWidth(width);
-      }
+    const node = nodeRef.current;
+    if (node) {
+      const width = node.getBoundingClientRect().width;
+      setNodeWidth(width);
     }
   }, [steps]);
 

@@ -30,7 +30,7 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'build'),
-    library: "MyLibrary",
+    library: "React Stepper",
     libraryTarget: 'umd',
     clean: true,
     globalObject: 'this'
