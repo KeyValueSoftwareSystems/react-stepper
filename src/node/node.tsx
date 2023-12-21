@@ -26,6 +26,7 @@ const Node: FC<INodeProps> = (props) => {
       style={{
         ...((getStyles(Elements.Node)) || {}),
         ...((index === currentStepIndex && getStyles(Elements.ActiveNode)) || {}),
+        ...((step.completed && getStyles(Elements.CompletedNode)) || {}),
         ...((!step.completed && currentStepIndex !== index
             && getStyles(Elements.InActiveNode)) || {})
       }}

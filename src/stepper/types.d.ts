@@ -12,7 +12,7 @@ export type IStepperProps = {
   steps: IStep[];
   currentStepIndex?: number;
   orientation?: ORIENTATION.HORIZONTAL | ORIENTATION.VERTICAL;
-  styles?: { [key in Elements]: IStyleFunction };
+  styles?: { [key in Elements]?: IStyleFunction };
   labelPosition?: LABEL_POSITION.LEFT | LABEL_POSITION.RIGHT | LABEL_POSITION.TOP | LABEL_POSITION.BOTTOM;
   showDescriptionsForAllSteps?: boolean;
   stepContent?(step: IStep, stepIndex: number): ReactElement; 
@@ -43,6 +43,7 @@ export type IStepInfoProps = {
   nodeRef: LegacyRef<HTMLDivElement> | undefined
   prevConnectorClassName: string;
   nextConnectorClassName: string;
+  steps: IStep[];
 }
 
 export type IStepContentProps = {

@@ -20,7 +20,8 @@ const StepInfo: (props: IStepInfoProps) => JSX.Element = ({
   styles,
   nodeRef,
   prevConnectorClassName,
-  nextConnectorClassName
+  nextConnectorClassName,
+  steps
 }: IStepInfoProps) => (
   <div
     id="stepper-step"
@@ -33,29 +34,35 @@ const StepInfo: (props: IStepInfoProps) => JSX.Element = ({
     }
   >
     {!isInlineLabelsAndSteps && (
-      <div className={getLabelStyle(orientation, labelPosition)}>
+      <div className={getLabelStyle(orientation, labelPosition)} onClick={(): void => onStepClick && onStepClick(step, index)}>
         <div
           className="label"
           id={`step-label-${index}`}
           style={{
             ...(getStyles(styles, Elements.LabelTitle, step, index) || {}),
             ...(index === currentStepIndex &&
-              (getStyles(styles, Elements.ActiveLabelTitle, step, index) || {}))
+              (getStyles(styles, Elements.ActiveLabelTitle, step, index) ||
+                {}))
           }}
         >
           {step.stepLabel}
         </div>
-        {(showDescriptionsForAllSteps || index === currentStepIndex) &&
-          orientation === ORIENTATION.HORIZONTAL &&
+        {step.stepDescription && (showDescriptionsForAllSteps || index === currentStepIndex) &&
+          orientation !== ORIENTATION.VERTICAL &&
           labelPosition === LABEL_POSITION.TOP && (
           <div
             className="description"
             id={`step-horizontal-top-description-${index}`}
             style={{
               ...(currentStepIndex === index
-                ? getStyles(styles, Elements.ActiveLabelDescription, step, index) ||
-                    {}
-                : getStyles(styles, Elements.LabelDescription, step, index) || {})
+                ? getStyles(
+                  styles,
+                  Elements.ActiveLabelDescription,
+                  step,
+                  index
+                ) || {}
+                : getStyles(styles, Elements.LabelDescription, step, index) ||
+                    {})
             }}
           >
             {step.stepDescription}
@@ -67,9 +74,10 @@ const StepInfo: (props: IStepInfoProps) => JSX.Element = ({
       <div
         className={prevConnectorClassName}
         style={{
-          ...(currentStepIndex >= index
+          ...(steps[index - 1]?.completed
             ? getStyles(styles, Elements.LineSeparator, step, index) || {}
-            : getStyles(styles, Elements.InactiveLineSeparator, step, index) || {})
+            : getStyles(styles, Elements.InactiveLineSeparator, step, index) ||
+              {})
         }}
       />
       <div
@@ -83,9 +91,7 @@ const StepInfo: (props: IStepInfoProps) => JSX.Element = ({
           step={step}
           index={index}
           currentStepIndex={currentStepIndex}
-          handleStepClick={(): void =>
-            onStepClick && onStepClick(step, index)
-          }
+          handleStepClick={(): void => onStepClick && onStepClick(step, index)}
           showCursor={!!onStepClick}
           renderNode={renderNode}
           getStyles={(element: Elements): object =>
@@ -101,12 +107,17 @@ const StepInfo: (props: IStepInfoProps) => JSX.Element = ({
               : ""
           }`}
         >
-          <div className={`label ${isVertical && "verticalStepperInlineLabel"}`} id={`step-inline-label-${index}`}
+          <div
+            className={`label ${isVertical && "verticalStepperInlineLabel"}`}
+            id={`step-inline-label-${index}`}
             style={{
               ...(getStyles(styles, Elements.LabelTitle, step, index) || {}),
               ...(index === currentStepIndex &&
-              (getStyles(styles, Elements.ActiveLabelTitle, step, index) || {}))
-            }}>
+                (getStyles(styles, Elements.ActiveLabelTitle, step, index) ||
+                  {}))
+            }}
+            onClick={(): void => onStepClick && onStepClick(step, index)}
+          >
             {step.stepLabel}
           </div>
         </div>
@@ -114,9 +125,10 @@ const StepInfo: (props: IStepInfoProps) => JSX.Element = ({
       <div
         className={nextConnectorClassName}
         style={{
-          ...(currentStepIndex > index
+          ...(step.completed
             ? getStyles(styles, Elements.LineSeparator, step, index) || {}
-            : getStyles(styles, Elements.InactiveLineSeparator, step, index) || {})
+            : getStyles(styles, Elements.InactiveLineSeparator, step, index) ||
+              {})
         }}
       />
     </div>

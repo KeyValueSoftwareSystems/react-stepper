@@ -21,7 +21,7 @@ const Stepper = (props: IStepperProps): JSX.Element => {
           isVertical ? "verticalStepper" : "horizontalStepper"
         }`}
       >
-        {steps.map((step, index) => Step({ stepperProps: props, step, index }))}
+        {steps.map((step, index) => <Step key={`${step.stepLabel}-${step.stepDescription}`} stepperProps={props} step={step} index={index} />)}
       </ul>
       {!isVertical && // For horizontal stepper, the content is displayed below the stepper with full width
         stepContent &&

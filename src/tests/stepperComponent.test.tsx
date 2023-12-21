@@ -144,6 +144,9 @@ test("Stepper Component - custom style", async () => {
     InActiveNode: () => ({
       backgroundColor: "black",
     }),
+    CompletedNode: () => ({
+      backgroundColor: "blue",
+    }),
   };
   const renderNode = jest.fn();
   const dom = render(
@@ -205,7 +208,7 @@ test("Stepper Component - orientation:vertical and labelPosition: bottom", async
   expect(description.innerHTML).toBe("Demo description");
 });
 
-test("Stepper Component - orientation:vertical and labelPosition: bottom", async () => {
+test("Stepper Component - orientation:horizontal and labelPosition: bottom", async () => {
   const steps: IStep[] = [
     {
       stepLabel: "Step 1",
@@ -213,11 +216,77 @@ test("Stepper Component - orientation:vertical and labelPosition: bottom", async
       completed: true,
     },
   ];
+  const onClick = jest.fn();
+  const styles = {
+    LineSeparator: () => ({
+      minHeight: "20px",
+    }),
+  }
   const dom = render(
     <Stepper
       steps={steps}
       orientation={ORIENTATION.HORIZONTAL}
+      labelPosition={LABEL_POSITION.BOTTOM}
+      onStepClick={onClick}
+      styles={styles}
+    />
+  );
+  const label = await getById(dom.container, "step-label-0");
+  expect(label.innerHTML).toBe("Step 1");
+  const description = await getById(dom.container, "step-description-0");
+  expect(description.innerHTML).toBe("Demo description");
+});
+
+test("Stepper Component - orientation:vertical and labelPosition:left", async () => {
+  const steps: IStep[] = [
+    {
+      stepLabel: "Step 1",
+      stepDescription: "Demo description",
+      completed: true,
+    },
+  ];
+  const onClick = jest.fn();
+  const styles = {
+    LineSeparator: () => ({
+      minHeight: "20px",
+    }),
+  }
+  const dom = render(
+    <Stepper
+      steps={steps}
+      orientation={ORIENTATION.VERTICAL}
       labelPosition={LABEL_POSITION.LEFT}
+      onStepClick={onClick}
+      styles={styles}
+    />
+  );
+  const label = await getById(dom.container, "step-label-0");
+  expect(label.innerHTML).toBe("Step 1");
+  const description = await getById(dom.container, "step-description-0");
+  expect(description.innerHTML).toBe("Demo description");
+});
+
+test("Stepper Component - horizontal:vertical and labelPosition:right", async () => {
+  const steps: IStep[] = [
+    {
+      stepLabel: "Step 1",
+      stepDescription: "Demo description",
+      completed: true,
+    },
+  ];
+  const onClick = jest.fn();
+  const styles = {
+    LineSeparator: () => ({
+      minHeight: "20px",
+    }),
+  }
+  const dom = render(
+    <Stepper
+      steps={steps}
+      orientation={ORIENTATION.HORIZONTAL}
+      labelPosition={LABEL_POSITION.RIGHT}
+      onStepClick={onClick}
+      styles={styles}
     />
   );
   const label = await getById(dom.container, "step-inline-label-0");
@@ -225,3 +294,6 @@ test("Stepper Component - orientation:vertical and labelPosition: bottom", async
   const description = await getById(dom.container, "step-description-0");
   expect(description.innerHTML).toBe("Demo description");
 });
+
+
+

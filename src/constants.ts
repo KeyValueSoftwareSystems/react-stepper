@@ -21,4 +21,5 @@ export enum Elements {
   Node = "Node",
   ActiveNode = "ActiveNode",
   InActiveNode = "InActiveNode",
+  CompletedNode = "CompletedNode"
 }
