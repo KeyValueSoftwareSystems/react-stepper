@@ -1,6 +1,6 @@
 {
   "name": "@keyvaluesystems/react-stepper",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A fully customizable stepper component",
   "main": "build/index.js",
   "source": "src/index.tsx",
