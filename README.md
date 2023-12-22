@@ -2,14 +2,21 @@
 
 <a href="https://www.npmjs.com/package/@keyvaluesystems/react-stepper"><img src="https://badgen.net/npm/v/@keyvaluesystems/react-stepper?color=blue" alt="npm version"></a> <a href="https://www.npmjs.com/package/@keyvaluesystems/react-stepper" ><img src="https://img.shields.io/npm/dw/@keyvaluesystems/react-stepper?label=Downloads" /></a> <a href="https://github.com/KeyValueSoftwareSystems/react-stepper"><img src="https://github.com/KeyValueSoftwareSystems/react-stepper/actions/workflows/update-and-publish.yml/badge.svg" alt="" /></a>
 
-<div style="display: flex; align-items: center;">
-<div>
-<img src="./src/assets/vertical-stepper-example.png" alt="" width="155" height="252"/>
-</div>
-<div>
-<img src="./src/assets/horizontal-stepper-example.png" alt="" width="518" height="118"/>
-</div>
-</div>
+<table>
+  <tr>
+    <td style="text-align: center; border: 0;">
+      <img src="./src/assets/vertical-stepper-example.png" alt="" width="155" height="252" />
+      <br />
+      Vertical Stepper
+    </td>
+    <td style="text-align: center; border: 0;">
+      <img src="./src/assets/horizontal-stepper-example.png" alt="" width="518" height="118" />
+      <br />
+      Horizontal Stepper
+    </td>
+  </tr>
+</table>
+
 A fully customizable ready to use stepper UI package for React.
 Try tweaking a stepper using this codesandbox link <a href="https://codesandbox.io/p/sandbox/react-stepper-zp2jrs?file=%2Fsrc%2FApp.js" >here</a>
 
@@ -147,15 +154,41 @@ Props that can be passed to the component are listed below:
 
 ## Style Customizations
 
-All the default styles provided by this package can be overridden using the `style` prop
-the below code shows all the styles that can be overridden:
+All the default styles provided by this package can be overridden using the `styles` prop
+Below code shows how to override the default styles of completed steps, connector lines and current active step
 
 ```jsx
 import React from "react";
 import Stepper from "react-stepper";
 
 function App() {
-  const stylesOverride = {
+
+  const styles = {
+    LineSeparator: () => ({
+      backgroundColor: "#028A0F",
+    }),
+    ActiveNode: () => ({
+      backgroundColor: "#028A0F",
+    }),
+    CompletedNode: () => ({
+      backgroundColor: "#028A0F",
+  };
+
+  return (
+    <Stepper
+      steps={stepsArray}
+      currentStepIndex={currentStepIndex}
+      styles={styles}
+    />
+  );
+}
+
+export default App;
+```
+Additional customizations can be made by overriding the customizable styles listed below:
+
+```jsx
+const stylesOverride = {
     LabelTitle: (step, stepIndex) => ({ ...styles }),
     ActiveLabelTitle: (step, stepIndex) => ({ ...styles }),
     LabelDescription: (step, stepIndex) => ({ ...styles }),
@@ -166,24 +199,15 @@ function App() {
     ActiveNode: (step, stepIndex) => ({ ...styles }),
     InActiveNode: (step, stepIndex) => ({ ...styles }),
   };
-  return (
-    <Stepper
-      steps={stepsArray}
-      currentStepIndex={currentStepIndex}
-      styles={stylesOverride}
-    />
-  );
-}
-
-export default App;
-```
+  ```
 
 - `LabelTitle` - overrides the step label style
 - `ActiveLabelTitle` - overrides the step label style of current active step
 - `LabelDescription` - overrides the step description style
 - `ActiveLabelDescription` - overrides the step description style of current active step
-- `LineSeparator` - overrides default step connector line styles
+- `LineSeparator` - overrides default completed step connector line styles
 - `InactiveLineSeparator` - overrides styles of step connector line after current active step
 - `Node` - overrides default styles of step indicator
 - `ActiveNode` - overrides default styles of step indicator of current active step
 - `InActiveNode` - overrides default styles of step indicator that is not completed and not active
+- `CompletedNode` - overrides default styles of completed step indicator

@@ -30,7 +30,7 @@ const Step: (props: IStepProps) => JSX.Element = ({
    vertical stepper with label direction top/bottom) */
   const isInlineLabelsAndSteps =
     (isVertical &&
-      [LABEL_POSITION.TOP, LABEL_POSITION.BOTTOM].includes(labelPosition)) ||
+      ![LABEL_POSITION.LEFT, LABEL_POSITION.RIGHT].includes(labelPosition)) ||
     (!isVertical &&
       [LABEL_POSITION.LEFT, LABEL_POSITION.RIGHT].includes(labelPosition));
 
@@ -42,17 +42,17 @@ const Step: (props: IStepProps) => JSX.Element = ({
       const width = node.getBoundingClientRect().width;
       setNodeWidth(width);
     }
-  }, [steps]);
+  }, [steps, labelPosition, orientation]);
 
   // prevConnector represents the connector line from the current step's node (nth node) to the preceding step's node (n-1 th node).
   const prevConnectorClassName = `stepConnector leftConnector ${
-    currentStepIndex >= index ? "activeConnector" : ""
+    steps[index - 1]?.completed ? "activeConnector" : ""
   } ${index === 0 ? "hiddenConnector" : ""}`;
 
   // nextConnector represents the connector line from the current step's node (nth node) to the preceding step's node (n-1 th node).
 
   const nextConnectorClassName = `stepConnector rightConnector ${
-    currentStepIndex > index ? "activeConnector" : ""
+    steps[index]?.completed ? "activeConnector" : ""
   } ${index === steps.length - 1 ? "hiddenConnector" : ""}`;
 
   /* middleConnector connects the current step nextConnector to (n+1th) step prevConnector,
@@ -62,7 +62,7 @@ const Step: (props: IStepProps) => JSX.Element = ({
     currentStepIndex > index ? "activeConnector" : ""
   } ${index === steps.length - 1 ? "hiddenConnector" : ""}`;
 
-  return orientation === ORIENTATION.HORIZONTAL &&
+  return orientation !== ORIENTATION.VERTICAL &&
     labelPosition === LABEL_POSITION.TOP ? (
       <StepInfo
         orientation={orientation}
@@ -79,6 +79,7 @@ const Step: (props: IStepProps) => JSX.Element = ({
         nodeRef={nodeRef}
         prevConnectorClassName={prevConnectorClassName}
         nextConnectorClassName={nextConnectorClassName}
+        steps={steps}
       />
     ) : (
       <div
@@ -104,6 +105,7 @@ const Step: (props: IStepProps) => JSX.Element = ({
           nodeRef={nodeRef}
           prevConnectorClassName={prevConnectorClassName}
           nextConnectorClassName={nextConnectorClassName}
+          steps={steps}
         />
         <StepContent
           labelPosition={labelPosition}

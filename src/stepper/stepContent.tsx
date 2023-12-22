@@ -37,7 +37,7 @@ const StepContent: (props: IStepContentProps) => JSX.Element = ({
         <div
           className={middleConnectorClassName}
           style={{
-            ...(currentStepIndex > index
+            ...(step.completed
               ? getStyles(styles, Elements.LineSeparator, step, index) || {}
               : getStyles(
                 styles,
@@ -50,7 +50,7 @@ const StepContent: (props: IStepContentProps) => JSX.Element = ({
       </div>
     )}
     <div className={isVertical ? "verticalContentWrapper" : ""}>
-      {(showDescriptionsForAllSteps || index === currentStepIndex) && (
+      {step.stepDescription && (showDescriptionsForAllSteps || index === currentStepIndex) &&  (
         <div
           className="description"
           id={`step-description-${index}`}
