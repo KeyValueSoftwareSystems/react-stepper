@@ -4,12 +4,12 @@
 
 <table>
   <tr>
-    <td style="text-align: center; border: 0;">
+    <td align="center">
       <img src="./src/assets/vertical-stepper-example.png" alt="" width="155" height="252" />
       <br />
       Vertical Stepper
     </td>
-    <td style="text-align: center; border: 0;">
+    <td align="center">
       <img src="./src/assets/horizontal-stepper-example.png" alt="" width="518" height="118" />
       <br />
       Horizontal Stepper
