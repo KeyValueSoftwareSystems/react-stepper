@@ -2,20 +2,7 @@
 
 <a href="https://www.npmjs.com/package/@keyvaluesystems/react-stepper"><img src="https://badgen.net/npm/v/@keyvaluesystems/react-stepper?color=blue" alt="npm version"></a> <a href="https://www.npmjs.com/package/@keyvaluesystems/react-stepper" ><img src="https://img.shields.io/npm/dw/@keyvaluesystems/react-stepper?label=Downloads" /></a> <a href="https://github.com/KeyValueSoftwareSystems/react-stepper"><img src="https://github.com/KeyValueSoftwareSystems/react-stepper/actions/workflows/update-and-publish.yml/badge.svg" alt="" /></a>
 
-<table>
-  <tr>
-    <td style="text-align: center; border: 0;">
-      <img src="./src/assets/vertical-stepper-example.png" alt="" width="155" height="252" />
-      <br />
-      Vertical Stepper
-    </td>
-    <td style="text-align: center; border: 0;">
-      <img src="./src/assets/horizontal-stepper-example.png" alt="" width="518" height="118" />
-      <br />
-      Horizontal Stepper
-    </td>
-  </tr>
-</table>
+<img src="./src/assets/stepper-example.png" alt="" width="786" height="331" />
 
 A fully customizable ready to use stepper UI package for React.
 Try tweaking a stepper using this codesandbox link <a href="https://codesandbox.io/p/sandbox/react-stepper-zp2jrs?file=%2Fsrc%2FApp.js" >here</a>
