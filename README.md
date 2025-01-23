@@ -146,7 +146,7 @@ Below code shows how to override the default styles of completed steps, connecto
 
 ```jsx
 import React from "react";
-import Stepper from "react-stepper";
+import Stepper from "@keyvaluesystems/react-stepper";
 
 function App() {
 
