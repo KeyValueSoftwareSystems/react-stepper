@@ -1,4 +1,7 @@
 
+/**
+ * Enum for Label position
+ */
 export enum LABEL_POSITION {
   LEFT = "left",
   RIGHT = "right",
@@ -6,11 +9,17 @@ export enum LABEL_POSITION {
   BOTTOM = "bottom",
 }
 
+/**
+ * Enum for orientation
+ */
 export enum ORIENTATION {
   HORIZONTAL = "horizontal",
   VERTICAL = "vertical",
 }
 
+/**
+ * Enum for elements of each node
+ */
 export enum Elements {
   LabelDescription = "LabelDescription",
   LabelTitle = "LabelTitle",

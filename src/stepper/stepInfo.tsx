@@ -6,6 +6,12 @@ import { LABEL_POSITION, Elements, ORIENTATION } from "../constants";
 import getStyles from "../utils/getStyles";
 import getLabelStyle from "../utils/getLabelStyle";
 
+/**
+ * To handle step display (inline or not)
+ * Can handle description display and label
+ * @param {IStepInfoProps} props
+ * @returns {React.FC}
+ */
 const StepInfo: (props: IStepInfoProps) => JSX.Element = ({
   orientation,
   labelPosition,

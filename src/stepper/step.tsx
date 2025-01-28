@@ -5,7 +5,13 @@ import { LABEL_POSITION, ORIENTATION } from "../constants";
 import StepContent from "./stepContent";
 import StepInfo from "./stepInfo";
 
-//  Each step consists of a node, a label, and connectors to the previous and next steps.
+/**
+ * Represents each step.
+ * Consist of node, label and connectors to previous and next step
+ * @function
+ * @param {IStepProps} props
+ * @returns {React.FC}
+ */
 const Step: (props: IStepProps) => JSX.Element = ({
   stepperProps,
   step,
