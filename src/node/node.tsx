@@ -4,6 +4,13 @@ import { Elements } from "../constants";
 import whiteTick from "../assets/white-tick.svg";
 import styles from "./styles.module.scss";
 
+/**
+ * Represents each node in the stepper
+ * Handles style addition to each node separately
+ * Handles click event of each node
+ * @param {INodeProps} props
+ * @returns {FC}
+ */
 const Node: FC<INodeProps> = (props) => {
   const {
     step,

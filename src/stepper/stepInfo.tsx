@@ -1,11 +1,17 @@
-import React from "react";
-import "./styles.scss";
-import type { IStepInfoProps } from "./types";
-import Node from "../node";
-import { LABEL_POSITION, Elements, ORIENTATION } from "../constants";
-import getStyles from "../utils/getStyles";
-import getLabelStyle from "../utils/getLabelStyle";
+import React, { FC } from 'react';
+import './styles.scss';
+import type { IStepInfoProps } from './types';
+import Node from '../node';
+import { LABEL_POSITION, Elements, ORIENTATION } from '../constants';
+import getStyles from '../utils/getStyles';
+import getLabelStyle from '../utils/getLabelStyle';
 
+/**
+ * To handle step display (inline or not)
+ * Can handle description display and label position
+ * @param {IStepInfoProps} props
+ * @returns {FC}
+ */
 const StepInfo: (props: IStepInfoProps) => JSX.Element = ({
   orientation,
   labelPosition,
@@ -21,70 +27,74 @@ const StepInfo: (props: IStepInfoProps) => JSX.Element = ({
   nodeRef,
   prevConnectorClassName,
   nextConnectorClassName,
-  steps
+  steps,
 }: IStepInfoProps) => (
   <div
-    id="stepper-step"
+    id='stepper-step'
     className={
       isVertical
         ? `verticalStepperWrapper ${
-          labelPosition === LABEL_POSITION.LEFT ? "labelLeft" : ""
-        }`
-        : "horizontalStepperWrapper"
+            labelPosition === LABEL_POSITION.LEFT ? 'labelLeft' : ''
+          }`
+        : 'horizontalStepperWrapper'
     }
   >
     {!isInlineLabelsAndSteps && (
-      <div className={getLabelStyle(orientation, labelPosition)} onClick={(): void => onStepClick && onStepClick(step, index)}>
+      <div
+        className={getLabelStyle(orientation, labelPosition)}
+        onClick={(): void => onStepClick && onStepClick(step, index)}
+      >
         <div
-          className="label"
+          className='label'
           id={`step-label-${index}`}
           style={{
             ...(getStyles(styles, Elements.LabelTitle, step, index) || {}),
             ...(index === currentStepIndex &&
               (getStyles(styles, Elements.ActiveLabelTitle, step, index) ||
-                {}))
+                {})),
           }}
         >
           {step.stepLabel}
         </div>
-        {step.stepDescription && (showDescriptionsForAllSteps || index === currentStepIndex) &&
+        {step.stepDescription &&
+          (showDescriptionsForAllSteps || index === currentStepIndex) &&
           orientation !== ORIENTATION.VERTICAL &&
           labelPosition === LABEL_POSITION.TOP && (
-          <div
-            className="description"
-            id={`step-horizontal-top-description-${index}`}
-            style={{
-              ...(currentStepIndex === index
-                ? getStyles(
-                  styles,
-                  Elements.ActiveLabelDescription,
-                  step,
-                  index
-                ) || {}
-                : getStyles(styles, Elements.LabelDescription, step, index) ||
-                    {})
-            }}
-          >
-            {step.stepDescription}
-          </div>
-        )}
+            <div
+              className='description'
+              id={`step-horizontal-top-description-${index}`}
+              style={{
+                ...(currentStepIndex === index
+                  ? getStyles(
+                      styles,
+                      Elements.ActiveLabelDescription,
+                      step,
+                      index
+                    ) || {}
+                  : getStyles(styles, Elements.LabelDescription, step, index) ||
+                    {}),
+              }}
+            >
+              {step.stepDescription}
+            </div>
+          )}
       </div>
     )}
-    <div className="stepContainer" id={`${index}-node`} ref={nodeRef}>
+    <div className='stepContainer' id={`${index}-node`} ref={nodeRef}>
       <div
         className={prevConnectorClassName}
         style={{
           ...(steps[index - 1]?.completed
             ? getStyles(styles, Elements.LineSeparator, step, index) || {}
             : getStyles(styles, Elements.InactiveLineSeparator, step, index) ||
-              {})
+              {}),
         }}
       />
       <div
         className={`node ${
           [LABEL_POSITION.TOP, LABEL_POSITION.LEFT].includes(labelPosition)
-            ? "reversedNode"
-            : ""
+            ? 'reversedNode'
+            : ''
         }`}
       >
         <Node
@@ -103,18 +113,18 @@ const StepInfo: (props: IStepInfoProps) => JSX.Element = ({
         <div
           className={`labelContainer ${
             [LABEL_POSITION.TOP, LABEL_POSITION.LEFT].includes(labelPosition)
-              ? "reversedLabelContainer"
-              : ""
+              ? 'reversedLabelContainer'
+              : ''
           }`}
         >
           <div
-            className={`label ${isVertical && "verticalStepperInlineLabel"}`}
+            className={`label ${isVertical && 'verticalStepperInlineLabel'}`}
             id={`step-inline-label-${index}`}
             style={{
               ...(getStyles(styles, Elements.LabelTitle, step, index) || {}),
               ...(index === currentStepIndex &&
                 (getStyles(styles, Elements.ActiveLabelTitle, step, index) ||
-                  {}))
+                  {})),
             }}
             onClick={(): void => onStepClick && onStepClick(step, index)}
           >
@@ -128,7 +138,7 @@ const StepInfo: (props: IStepInfoProps) => JSX.Element = ({
           ...(step.completed
             ? getStyles(styles, Elements.LineSeparator, step, index) || {}
             : getStyles(styles, Elements.InactiveLineSeparator, step, index) ||
-              {})
+              {}),
         }}
       />
     </div>

@@ -1,15 +1,21 @@
-import React, { useRef, useEffect, useState } from "react";
-import "./styles.scss";
-import type { IStepProps } from "../stepper/types";
-import { LABEL_POSITION, ORIENTATION } from "../constants";
-import StepContent from "./stepContent";
-import StepInfo from "./stepInfo";
+import React, { useRef, useEffect, useState, FC } from 'react';
+import './styles.scss';
+import type { IStepProps } from '../stepper/types';
+import { LABEL_POSITION, ORIENTATION } from '../constants';
+import StepContent from './stepContent';
+import StepInfo from './stepInfo';
 
-//  Each step consists of a node, a label, and connectors to the previous and next steps.
+/**
+ * Represents each step.
+ * Consist of node, label and connectors to previous and next step
+ * @function
+ * @param {IStepProps} props
+ * @returns {FC}
+ */
 const Step: (props: IStepProps) => JSX.Element = ({
   stepperProps,
   step,
-  index
+  index,
 }: IStepProps) => {
   const {
     steps,
@@ -20,7 +26,7 @@ const Step: (props: IStepProps) => JSX.Element = ({
     showDescriptionsForAllSteps = false,
     stepContent,
     onStepClick,
-    renderNode
+    renderNode,
   } = stepperProps;
   const [nodeWidth, setNodeWidth] = useState(0);
 
@@ -46,24 +52,50 @@ const Step: (props: IStepProps) => JSX.Element = ({
 
   // prevConnector represents the connector line from the current step's node (nth node) to the preceding step's node (n-1 th node).
   const prevConnectorClassName = `stepConnector leftConnector ${
-    steps[index - 1]?.completed ? "activeConnector" : ""
-  } ${index === 0 ? "hiddenConnector" : ""}`;
+    steps[index - 1]?.completed ? 'activeConnector' : ''
+  } ${index === 0 ? 'hiddenConnector' : ''}`;
 
   // nextConnector represents the connector line from the current step's node (nth node) to the preceding step's node (n-1 th node).
 
   const nextConnectorClassName = `stepConnector rightConnector ${
-    steps[index]?.completed ? "activeConnector" : ""
-  } ${index === steps.length - 1 ? "hiddenConnector" : ""}`;
+    steps[index]?.completed ? 'activeConnector' : ''
+  } ${index === steps.length - 1 ? 'hiddenConnector' : ''}`;
 
   /* middleConnector connects the current step nextConnector to (n+1th) step prevConnector,
   allowing the display of descriptions or content between the two steps when necessary.  */
 
   const middleConnectorClassName = `middleStepConnector ${
-    currentStepIndex > index ? "activeConnector" : ""
-  } ${index === steps.length - 1 ? "hiddenConnector" : ""}`;
+    currentStepIndex > index ? 'activeConnector' : ''
+  } ${index === steps.length - 1 ? 'hiddenConnector' : ''}`;
 
   return orientation !== ORIENTATION.VERTICAL &&
     labelPosition === LABEL_POSITION.TOP ? (
+    <StepInfo
+      orientation={orientation}
+      labelPosition={labelPosition}
+      isVertical={isVertical}
+      isInlineLabelsAndSteps={isInlineLabelsAndSteps}
+      index={index}
+      currentStepIndex={currentStepIndex}
+      step={step}
+      showDescriptionsForAllSteps={showDescriptionsForAllSteps}
+      onStepClick={onStepClick}
+      renderNode={renderNode}
+      styles={styles}
+      nodeRef={nodeRef}
+      prevConnectorClassName={prevConnectorClassName}
+      nextConnectorClassName={nextConnectorClassName}
+      steps={steps}
+    />
+  ) : (
+    <div
+      className={
+        orientation === ORIENTATION.VERTICAL &&
+        labelPosition === LABEL_POSITION.LEFT
+          ? 'verticalTextLeftContainer'
+          : ''
+      }
+    >
       <StepInfo
         orientation={orientation}
         labelPosition={labelPosition}
@@ -81,46 +113,20 @@ const Step: (props: IStepProps) => JSX.Element = ({
         nextConnectorClassName={nextConnectorClassName}
         steps={steps}
       />
-    ) : (
-      <div
-        className={
-          orientation === ORIENTATION.VERTICAL &&
-        labelPosition === LABEL_POSITION.LEFT
-            ? "verticalTextLeftContainer"
-            : ""
-        }
-      >
-        <StepInfo
-          orientation={orientation}
-          labelPosition={labelPosition}
-          isVertical={isVertical}
-          isInlineLabelsAndSteps={isInlineLabelsAndSteps}
-          index={index}
-          currentStepIndex={currentStepIndex}
-          step={step}
-          showDescriptionsForAllSteps={showDescriptionsForAllSteps}
-          onStepClick={onStepClick}
-          renderNode={renderNode}
-          styles={styles}
-          nodeRef={nodeRef}
-          prevConnectorClassName={prevConnectorClassName}
-          nextConnectorClassName={nextConnectorClassName}
-          steps={steps}
-        />
-        <StepContent
-          labelPosition={labelPosition}
-          isVertical={isVertical}
-          currentStepIndex={currentStepIndex}
-          index={index}
-          styles={styles}
-          step={step}
-          showDescriptionsForAllSteps={showDescriptionsForAllSteps}
-          middleConnectorClassName={middleConnectorClassName}
-          stepContent={stepContent}
-          nodeWidth={nodeWidth}
-        />
-      </div>
-    );
+      <StepContent
+        labelPosition={labelPosition}
+        isVertical={isVertical}
+        currentStepIndex={currentStepIndex}
+        index={index}
+        styles={styles}
+        step={step}
+        showDescriptionsForAllSteps={showDescriptionsForAllSteps}
+        middleConnectorClassName={middleConnectorClassName}
+        stepContent={stepContent}
+        nodeWidth={nodeWidth}
+      />
+    </div>
+  );
 };
 
 export default Step;
