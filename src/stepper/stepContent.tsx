@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import "./styles.scss";
 import { LABEL_POSITION, Elements } from "../constants";
 import getStyles from "../utils/getStyles";
@@ -8,7 +8,7 @@ import { IStepContentProps } from "./types";
  * Gives the step content considering the orientation
  * Can customize styles and nodeWidth of each step
  * @param {IStepContentProps} props
- * @returns {FC}
+ * @returns {React.FC}
  */
 const StepContent: (props: IStepContentProps) => JSX.Element = ({
   labelPosition,

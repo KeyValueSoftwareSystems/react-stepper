@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React from "react";
 import "./styles.scss";
 import type { IStepperProps } from "./types";
 import { ORIENTATION } from "../constants";
@@ -7,7 +7,7 @@ import Step from "./step";
 /**
  * To display each steps after analysing the orientation
  * @param { IStepperProps} props
- * @returns {FC}
+ * @returns {React.FC}
  */
 const Stepper = (props: IStepperProps): JSX.Element => {
   const {
