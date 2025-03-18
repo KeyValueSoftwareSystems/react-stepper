@@ -1,4 +1,4 @@
-import { LegacyRef, ReactElement } from "react";
+import { LegacyRef, ReactElement, CSSProperties } from "react";
 import { LABEL_POSITION, ORIENTATION } from "../constants";
 import { Elements } from "../constants";
 
@@ -18,6 +18,8 @@ export type IStepperProps = {
   stepContent?(step: IStep, stepIndex: number): ReactElement; 
   onStepClick?(step: IStep, stepIndex: number): void;
   renderNode?(step: IStep, stepIndex: number): ReactElement;
+  completedNodeStyle?: CSSProperties;
+  currentNodeStyle?: CSSProperties;
 };
 
 export type IStyleFunction = (step: IStep, stepIndex: number) => object;
@@ -44,6 +46,8 @@ export type IStepInfoProps = {
   prevConnectorClassName: string;
   nextConnectorClassName: string;
   steps: IStep[];
+  completedNodeStyle?: CSSProperties;
+  currentNodeStyle?: CSSProperties;
 }
 
 export type IStepContentProps = {
