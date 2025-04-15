@@ -1,13 +1,14 @@
-import { ReactElement } from "react";
-import { IStep } from "../stepper/types";
+import { ReactElement, CSSProperties } from "react";
 import { Elements } from "../constants";
+import type { IStep } from "../stepper/types";
 
-export type INodeProps = {
+export interface INodeProps {
   step: IStep;
-  renderNode?(step: IStep, index: number): ReactElement;
   index: number;
-  currentStepIndex?: number;
-  handleStepClick(): void;
+  currentStepIndex: number;
+  handleStepClick?: () => void;
   showCursor: boolean;
-  getStyles(element: Elements): object;
-};
+  renderNode?: (step: IStep, stepIndex: number) => ReactElement;
+  getStyles: (element: Elements) => object;
+  nodeStyle?: CSSProperties;
+}
