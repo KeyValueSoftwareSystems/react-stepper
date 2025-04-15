@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./styles.scss";
-import type { IStepProps } from "../stepper/types";
+import type { IStepProps } from "./types";
 import { LABEL_POSITION, ORIENTATION } from "../constants";
 import StepContent from "./stepContent";
 import StepInfo from "./stepInfo";
@@ -26,7 +26,9 @@ const Step: (props: IStepProps) => JSX.Element = ({
     showDescriptionsForAllSteps = false,
     stepContent,
     onStepClick,
-    renderNode
+    renderNode,
+    completedNodeStyle,
+    currentNodeStyle
   } = stepperProps;
   const [nodeWidth, setNodeWidth] = useState(0);
 
@@ -68,51 +70,39 @@ const Step: (props: IStepProps) => JSX.Element = ({
     currentStepIndex > index ? "activeConnector" : ""
   } ${index === steps.length - 1 ? "hiddenConnector" : ""}`;
 
+  const stepInfoProps = {
+    orientation,
+    labelPosition,
+    isVertical,
+    isInlineLabelsAndSteps,
+    index,
+    currentStepIndex,
+    step,
+    showDescriptionsForAllSteps,
+    onStepClick,
+    renderNode,
+    styles,
+    nodeRef,
+    prevConnectorClassName,
+    nextConnectorClassName,
+    steps,
+    completedNodeStyle,
+    currentNodeStyle
+  };
+
   return orientation !== ORIENTATION.VERTICAL &&
     labelPosition === LABEL_POSITION.TOP ? (
-      <StepInfo
-        orientation={orientation}
-        labelPosition={labelPosition}
-        isVertical={isVertical}
-        isInlineLabelsAndSteps={isInlineLabelsAndSteps}
-        index={index}
-        currentStepIndex={currentStepIndex}
-        step={step}
-        showDescriptionsForAllSteps={showDescriptionsForAllSteps}
-        onStepClick={onStepClick}
-        renderNode={renderNode}
-        styles={styles}
-        nodeRef={nodeRef}
-        prevConnectorClassName={prevConnectorClassName}
-        nextConnectorClassName={nextConnectorClassName}
-        steps={steps}
-      />
+      <StepInfo {...stepInfoProps} />
     ) : (
       <div
         className={
           orientation === ORIENTATION.VERTICAL &&
-        labelPosition === LABEL_POSITION.LEFT
+          labelPosition === LABEL_POSITION.LEFT
             ? "verticalTextLeftContainer"
             : ""
         }
       >
-        <StepInfo
-          orientation={orientation}
-          labelPosition={labelPosition}
-          isVertical={isVertical}
-          isInlineLabelsAndSteps={isInlineLabelsAndSteps}
-          index={index}
-          currentStepIndex={currentStepIndex}
-          step={step}
-          showDescriptionsForAllSteps={showDescriptionsForAllSteps}
-          onStepClick={onStepClick}
-          renderNode={renderNode}
-          styles={styles}
-          nodeRef={nodeRef}
-          prevConnectorClassName={prevConnectorClassName}
-          nextConnectorClassName={nextConnectorClassName}
-          steps={steps}
-        />
+        <StepInfo {...stepInfoProps} />
         <StepContent
           labelPosition={labelPosition}
           isVertical={isVertical}

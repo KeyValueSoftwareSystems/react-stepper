@@ -19,24 +19,22 @@ const Node: FC<INodeProps> = (props) => {
     currentStepIndex,
     handleStepClick,
     showCursor,
-    getStyles
+    getStyles,
+    nodeStyle
   } = props;
+
+  const isCompleted = step.completed;
+  const isActive = index === currentStepIndex;
 
   return (
     <div
       className={`${styles.eachNode}
       ${showCursor && styles.cursorPointer}
-      ${index === currentStepIndex && styles.activeStepNode}
-      ${!step.completed && currentStepIndex !== index && styles.inactiveStepNode}
-      ${step.completed && currentStepIndex !== index && styles.completedStepNode}
+      ${isActive && styles.activeStepNode}
+      ${!isCompleted && !isActive && styles.inactiveStepNode}
+      ${isCompleted && !isActive && styles.completedStepNode}
       `}
-      style={{
-        ...((getStyles(Elements.Node)) || {}),
-        ...((index === currentStepIndex && getStyles(Elements.ActiveNode)) || {}),
-        ...((step.completed && getStyles(Elements.CompletedNode)) || {}),
-        ...((!step.completed && currentStepIndex !== index
-            && getStyles(Elements.InActiveNode)) || {})
-      }}
+      style={nodeStyle}
       onClick={(): void | null => handleStepClick && handleStepClick()}
       role="presentation"
       id="stepper-node"
@@ -44,13 +42,15 @@ const Node: FC<INodeProps> = (props) => {
       {(renderNode && renderNode(step, index))
     || (
       <>
-        {step?.completed && (
+        {isCompleted ? (
           <img
             src={whiteTick}
             className={styles.whiteTickImg}
             alt=""
-          />)
-        || index + 1}
+          />
+        ) : (
+          index + 1
+        )}
       </>
     )}
     </div>

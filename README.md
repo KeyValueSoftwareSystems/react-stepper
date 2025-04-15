@@ -136,6 +136,16 @@ Props that can be passed to the component are listed below:
       </td>
       <td><code>undefined</code></td>
     </tr>
+    <tr>
+      <td><code><b>completedNodeStyle?:</b> object</code></td>
+      <td>Custom styles for completed nodes</td>
+      <td><code>undefined</code></td>
+    </tr>
+    <tr>
+      <td><code><b>currentNodeStyle?:</b> object</code></td>
+      <td>Custom styles for current nodes</td>
+      <td><code>undefined</code></td>
+    </tr>
   </tbody>
 </table>
 
@@ -159,7 +169,8 @@ function App() {
     }),
     CompletedNode: () => ({
       backgroundColor: "#028A0F",
-  };
+   })
+ };
 
   return (
     <Stepper
