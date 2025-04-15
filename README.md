@@ -142,6 +142,20 @@ Props that can be passed to the component are listed below:
       </td>
       <td><code>undefined</code></td>
     </tr>
+     <tr>
+      <td><code><b>completedNodeStyle?</b></td>
+      <td>
+        Prop that allows for dynamic styling  of completed nodes
+      </td>
+      <td><code>undefined</code></td>
+    </tr>
+     <tr>
+      <td><code><b>currentNodeStyle?</b></td>
+      <td>
+        Prop that allows for dynamic styling of current active node
+      </td>
+      <td><code>undefined</code></td>
+    </tr>
     <tr>
       <td><code><b>styles?:</b> object</code></td>
       <td>
@@ -172,7 +186,8 @@ function App() {
     }),
     CompletedNode: () => ({
       backgroundColor: "#028A0F",
-  };
+   })
+ };
 
   return (
     <Stepper
